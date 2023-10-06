@@ -18,14 +18,14 @@ public class Calquiler {
     private LocalDate fechaFin;
     private int precioAlquiler;
     private int estado;
-    private Inmueble inmueble;
-    private Inquilino inquilino;
+    private InmuebleMartin inmueble;
+    private InquilinoMartin inquilino;
     
     //Constructores
     public Calquiler() {
     }
 
-    public Calquiler(LocalDate fechaIni, LocalDate fechaFin, int precioAlquiler, int estado, Inmueble inmueble, Inquilino inquilino) {
+    public Calquiler(LocalDate fechaIni, LocalDate fechaFin, int precioAlquiler, int estado, InmuebleMartin inmueble, InquilinoMartin inquilino) {
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
         this.precioAlquiler = precioAlquiler;
@@ -34,7 +34,7 @@ public class Calquiler {
         this.inquilino = inquilino;
     }
 
-    public Calquiler(int idContrato, LocalDate fechaIni, LocalDate fechaFin, int precioAlquiler, int estado, Inmueble inmueble, Inquilino inquilino) {
+    public Calquiler(int idContrato, LocalDate fechaIni, LocalDate fechaFin, int precioAlquiler, int estado, InmuebleMartin inmueble, InquilinoMartin inquilino) {
         this.idContrato = idContrato;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
@@ -85,19 +85,19 @@ public class Calquiler {
         this.estado = estado;
     }
 
-    public Inmueble getInmueble() {
+    public InmuebleMartin getInmueble() {
         return inmueble;
     }
 
-    public void setInmueble(Inmueble inmueble) {
+    public void setInmueble(InmuebleMartin inmueble) {
         this.inmueble = inmueble;
     }
 
-    public Inquilino getInquilino() {
+    public InquilinoMartin getInquilino() {
         return inquilino;
     }
 
-    public void setInquilino(Inquilino inquilino) {
+    public void setInquilino(InquilinoMartin inquilino) {
         this.inquilino = inquilino;
     }
     

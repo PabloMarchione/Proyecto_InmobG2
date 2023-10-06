@@ -22,8 +22,8 @@ public class CalquilerData {
     
     private Connection con;
     
-    private InquilinoData inquiData;
-    private InmuebleData inmuData;
+    private InquilinoDataMartin inquiData;
+    private InmuebleDataMartin inmuData;
     
     //constructor
     public CalquilerData(){
@@ -64,8 +64,8 @@ public class CalquilerData {
                 
                 //debo modificar el estado de la propiedad a no disponible
                 
-                //Ideal: a traves de un metodo de InmuebleData, al que le paso el parámetro de idInmueble
-                //instancio un InmuebleData                
+                //Ideal: a traves de un metodo de InmuebleDataMartin, al que le paso el parámetro de idInmueble
+                //instancio un InmuebleDataMartin                
                 //inmuData.seteaVigente(calqui.getInmueble().getId_inmueble()));
                 
                 //opción interna:
@@ -83,7 +83,7 @@ public class CalquilerData {
                     //estoy modificando una sola materia, por lo tanto si es correcto, devuelve 1
                     if (exito == 1)
                     {
-                        JOptionPane.showMessageDialog(null, "Inmueble vinculado al contrato exitosamente");
+                        JOptionPane.showMessageDialog(null, "InmuebleMartin vinculado al contrato exitosamente");
                     }
                     // debería agregar ps2.close() ???
                 }
