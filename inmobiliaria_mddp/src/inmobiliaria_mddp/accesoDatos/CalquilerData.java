@@ -65,7 +65,8 @@ public class CalquilerData {
                 //debo modificar el estado de la propiedad a no disponible
                 
                 //Ideal: a traves de un metodo de InmuebleData, al que le paso el parámetro de idInmueble
-                //inmuData.seteaVigente(calqui.getInquilino().getId_inquilino());
+                //instancio un InmuebleData                
+                //inmuData.seteaVigente(calqui.getInmueble().getId_inmueble()));
                 
                 //opción interna:
                 /*
@@ -75,7 +76,7 @@ public class CalquilerData {
                 {
                     PreparedStatement ps2 = con.prepareStatement(sql2);
                     
-                    ps2.setInt(1, calqui.getInquilino().getId_inquilino());
+                    ps2.setInt(1, calqui.getInquilino().getId_inquilino()); //INMUEBLE  
                 
                     int exito = ps2.executeUpdate();
                 
