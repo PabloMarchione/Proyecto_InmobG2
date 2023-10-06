@@ -46,8 +46,8 @@ public class CalquilerData {
             ps.setDate(2, Date.valueOf(calqui.getFechaFin()));
             ps.setInt(3, calqui.getPrecioAlquiler());
             ps.setInt(4, calqui.getEstado());
-            ps.setInt(5, calqui.getInmueble().getId_inmueble());
-            ps.setInt(6, calqui.getInquilino().getId_inquilino());
+            ps.setInt(5, calqui.getInmueble().getId_inmueble()); //reemplazar por entidad de Pablo, que a su vez tiene la entidad Propietario de Diana
+            ps.setInt(6, calqui.getInquilino().getId_inquilino()); //reemplazar por entidad de Diego 
             
             ps.executeUpdate();
             
@@ -63,36 +63,8 @@ public class CalquilerData {
                 JOptionPane.showMessageDialog(null, "El Propietario con ID: " + calqui.getInmueble().getPropietario().getId_propietario() + " recibió un aviso al teléfono " + calqui.getInmueble().getPropietario().getTelefono());
                 
                 //debo modificar el estado de la propiedad a no disponible
-                
-                //Ideal: a traves de un metodo de InmuebleDataMartin, al que le paso el parámetro de idInmueble
-                //instancio un InmuebleDataMartin                
-                //inmuData.seteaVigente(calqui.getInmueble().getId_inmueble()));
-                
-                //opción interna:
-                /*
-                String sql2 = "UPDATE inmueble SET Estado = 1 WHERE idInmueble = ?";
-                
-                try
-                {
-                    PreparedStatement ps2 = con.prepareStatement(sql2);
-                    
-                    ps2.setInt(1, calqui.getInquilino().getId_inquilino()); //INMUEBLE  
-                
-                    int exito = ps2.executeUpdate();
-                
-                    //estoy modificando una sola materia, por lo tanto si es correcto, devuelve 1
-                    if (exito == 1)
-                    {
-                        JOptionPane.showMessageDialog(null, "InmuebleMartin vinculado al contrato exitosamente");
-                    }
-                    // debería agregar ps2.close() ???
-                }
-                catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "No se pudo acceder a la tabla inmueble");
-                }
-                
-                */
-                
+                InmuebleData inmuData = new InmuebleData();
+                inmuData.estadoInmueble(calqui.getInmueble().getId_inmueble()); //reemplazar por entidad de Pablo
             }
             //cierro el objeto para liberar recursos
             ps.close();
