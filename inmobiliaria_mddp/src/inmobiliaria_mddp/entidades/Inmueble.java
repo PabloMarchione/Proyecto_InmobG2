@@ -1,13 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package inmobiliaria_mddp.entidades;
 
-/**
- *
- * @author pablo
- */
+
 public class Inmueble {
+    
+    private int idInmueble;
+    private int codigo;
+    private String direccion;
+    private int altura;
+    private String tipo;
+    private int superficie;
+    private int precio;
+    private boolean estado;
+    //private Propietario propietario;
+
+    public Inmueble() {
+    }
+    
+    
     
 }
