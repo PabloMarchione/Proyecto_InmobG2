@@ -20,7 +20,7 @@ public class Inmobiliaria_mddp {
         
         //hola soy Diana
         
-        PropietarioMartin propi = new PropietarioMartin(1, 3333);
+       /* PropietarioMartin propi = new PropietarioMartin(1, 3333);
         InquilinoMartin inqui = new InquilinoMartin(1);
         InmuebleMartin inmu = new InmuebleMartin(1, propi);
         
@@ -29,7 +29,7 @@ public class Inmobiliaria_mddp {
         
         CalquilerData alquiData = new CalquilerData();
         
-        alquiData.generarContrato(alquilo);
+        alquiData.generarContrato(alquilo);*/
         
     }
     

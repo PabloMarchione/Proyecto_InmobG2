@@ -60,7 +60,7 @@ public class CalquilerData {
                 // 1 es el numero de columna
                 calqui.setIdContrato(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Contrato creado existosamente");
-                JOptionPane.showMessageDialog(null, "El Propietario con ID: " + calqui.getInmueble().getPropietario().getId_propietario() + " recibió un aviso al teléfono " + calqui.getInmueble().getPropietario().getTelefono());
+                //JOptionPane.showMessageDialog(null, "El Propietario con ID: " + calqui.getInmueble().getPropietario().getId_propietario() + " recibió un aviso al teléfono " + calqui.getInmueble().getPropietario().getTelefono());
                 
                 //debo modificar el estado de la propiedad a no disponible
                 InmuebleData inmuData = new InmuebleData();
