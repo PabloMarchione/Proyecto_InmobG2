@@ -20,7 +20,16 @@ public class Inmobiliaria_mddp {
         
         //hola soy Diana
         
+       /* PropietarioMartin propi = new PropietarioMartin(1, 3333);
+        InquilinoMartin inqui = new InquilinoMartin(1);
+        InmuebleMartin inmu = new InmuebleMartin(1, propi);
         
+       
+        Calquiler alquilo = new Calquiler(LocalDate.of(2023, 12, 6), LocalDate.of(2023, 12, 7), 777, 1,inmu, inqui);
+        
+        CalquilerData alquiData = new CalquilerData();
+        
+        alquiData.generarContrato(alquilo);*/
         
     }
     

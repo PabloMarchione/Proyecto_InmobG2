@@ -2,7 +2,7 @@
 package inmobiliaria_mddp.entidades;
 
 
-public class Inmueble {
+public class InmuebleMartin {
     
     private int idInmueble;
     private int codigo;
@@ -12,10 +12,16 @@ public class Inmueble {
     private int superficie;
     private int precio;
     private boolean estado;
-    //private Propietario propietario;
+    private PropietarioMartin propietario;
 
-    public Inmueble() {
+    public InmuebleMartin() {
     }
+
+    public InmuebleMartin(int idInmueble, PropietarioMartin propietario) {
+        this.idInmueble = idInmueble;
+        this.propietario = propietario;
+    }
+    
     
     
     
