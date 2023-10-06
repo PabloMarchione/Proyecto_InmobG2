@@ -46,7 +46,7 @@ public class CalquilerData {
             ps.setDate(2, Date.valueOf(calqui.getFechaFin()));
             ps.setInt(3, calqui.getPrecioAlquiler());
             ps.setInt(4, calqui.getEstado());
-            ps.setInt(5, calqui.getInmueble().getId_inmueble()); //reemplazar por entidad de Pablo, que a su vez tiene la entidad Propietario de Diana
+            ps.setInt(5, calqui.getInmueble().getIdInmueble()); //reemplazar por entidad de Pablo, que a su vez tiene la entidad Propietario de Diana
             ps.setInt(6, calqui.getInquilino().getId_inquilino()); //reemplazar por entidad de Diego 
             
             ps.executeUpdate();
@@ -60,11 +60,11 @@ public class CalquilerData {
                 // 1 es el numero de columna
                 calqui.setIdContrato(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Contrato creado existosamente");
-                //JOptionPane.showMessageDialog(null, "El Propietario con ID: " + calqui.getInmueble().getPropietario().getId_propietario() + " recibió un aviso al teléfono " + calqui.getInmueble().getPropietario().getTelefono());
+                JOptionPane.showMessageDialog(null, "El Propietario con ID: " + calqui.getInmueble().getPropietario().getIdPropietario() + " recibió un aviso al teléfono " + calqui.getInmueble().getPropietario().getTelefono());
                 
                 //debo modificar el estado de la propiedad a no disponible
                 InmuebleData inmuData = new InmuebleData();
-                inmuData.estadoInmueble(calqui.getInmueble().getId_inmueble()); //reemplazar por entidad de Pablo
+                inmuData.estadoInmueble(calqui.getInmueble().getIdInmueble()); //reemplazar por entidad de Pablo
             }
             //cierro el objeto para liberar recursos
             ps.close();
