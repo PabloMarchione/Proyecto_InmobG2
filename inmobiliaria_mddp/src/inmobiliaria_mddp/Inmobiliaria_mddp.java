@@ -12,10 +12,13 @@ public class Inmobiliaria_mddp {
         // TODO code application logic here
         //Linea agregada solo para chequear push
         
-        /**
-         * 
-          * 
-         */
+        ///PRUEBA DEL METODO PARA MARTIN
+        /* 
+        InmuebleData id = new InmuebleData();
+        id.estadoInmueble(12);
+        */
+        
+        //hola soy Diana
         
         PropietarioMartin propi = new PropietarioMartin(1, 3333);
         InquilinoMartin inqui = new InquilinoMartin(1);
