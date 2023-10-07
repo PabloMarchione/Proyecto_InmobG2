@@ -55,6 +55,39 @@ public class InmuebleData {
             }
     }
     
+    ///Agregados por Martin: a 0 cuando se crea un cotrato, y a 1 cuando se anula
+    public void estadoInmuebleOcupado(int id){
+        
+        try {
+            String sql = "UPDATE inmueble SET Estado = 0 WHERE idInmueble = ?";
+            PreparedStatement ps = con.prepareStatement(sql);//pide el try por el close, al pedo
+            ps.setInt(1, id);
+            int fila=ps.executeUpdate();
+            if(fila==1){
+                JOptionPane.showMessageDialog(null, "El inmueble pasa a estar ocupado. ");
+            }
+             ps.close();
+            } catch (SQLException e) {
+             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inmuebles");
+            }
+    }
+    
+    public void estadoInmuebleDisponible(int id){
+        
+        try {
+            String sql = "UPDATE inmueble SET Estado = 1 WHERE idInmueble = ?";
+            PreparedStatement ps = con.prepareStatement(sql);//pide el try por el close, al pedo
+            ps.setInt(1, id);
+            int fila=ps.executeUpdate();
+            if(fila==1){
+                JOptionPane.showMessageDialog(null, "El inmueble pasa a estar disponible. ");
+            }
+             ps.close();
+            } catch (SQLException e) {
+             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inmuebles");
+            }
+    }
+    
     
     /////////////////////////////// INSERTAR INMUEBLE NUEVO
     public void guardarInmueble(Inmueble inmueble) {
