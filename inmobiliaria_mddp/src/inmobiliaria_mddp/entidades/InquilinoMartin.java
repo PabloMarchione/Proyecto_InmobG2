@@ -5,13 +5,17 @@
  */
 package inmobiliaria_mddp.entidades;
 
-/**
- *
- * @author marti
- */
+
 public class InquilinoMartin {
     
     private int id_inquilino;
+ 
+    
+            
+            
+            
+    
+    
 
     public InquilinoMartin(int id_inquilino) {
         this.id_inquilino = id_inquilino;
