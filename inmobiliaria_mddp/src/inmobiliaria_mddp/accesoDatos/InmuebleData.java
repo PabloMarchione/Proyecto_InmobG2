@@ -55,7 +55,8 @@ public class InmuebleData {
             }
     }
     
-    ///Agregados por Martin: a 0 cuando se crea un cotrato, y a 1 cuando se anula
+    //Agregado por Martin
+    //Ocupado es lo mismo que Estado = 0
     public void estadoInmuebleOcupado(int id){
         
         try {
@@ -72,6 +73,8 @@ public class InmuebleData {
             }
     }
     
+    //Agregado por Martin
+    //disponible es lo mismo que Estado = 1 
     public void estadoInmuebleDisponible(int id){
         
         try {

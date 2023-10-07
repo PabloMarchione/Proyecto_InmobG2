@@ -40,7 +40,7 @@ public class CalquilerData {
     {
         Calquiler calqui = null;
         
-        String sql = "SELECT idContrato, fechaIni, fechaFin, PrecioAlquiler, Estado, idInmueble, idInquilino WHERE idContrato = ?";
+        String sql = "SELECT idContrato, fechaIni, fechaFin, PrecioAlquiler, Estado, idInmueble, idInquilino FROM calquiler WHERE idContrato = ?";
         
         try 
         {
@@ -56,17 +56,19 @@ public class CalquilerData {
                 calqui.setIdContrato(rs.getInt("idContrato"));
                 calqui.setFechaIni(rs.getDate("fechaIni").toLocalDate());
                 calqui.setFechaFin(rs.getDate("fechaFin").toLocalDate());
+                calqui.setPrecioAlquiler(rs.getInt("PrecioAlquiler"));
                 calqui.setEstado(rs.getInt("Estado"));
                 //debo traer un inmueble a partir del idInmueble
                 InmuebleData inmuData = new InmuebleData();
                 calqui.setInmueble(inmuData.buscarInmuebleConID(rs.getInt("idInmueble")));
                 //debo traer un inquilino a partir del idInquilino
+                InquilinoData inquiData = new InquilinoData();
+                calqui.setInquilino(inquiData.buscarInquilinoConID(rs.getInt("idInquilino")));
             }
         } 
         catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo acceder a la tabla calquiler. " + ex.getMessage() );
         }
-        
         return calqui;
     }
     
@@ -99,9 +101,9 @@ public class CalquilerData {
                 JOptionPane.showMessageDialog(null, "Contrato creado existosamente");
                 JOptionPane.showMessageDialog(null, "El Propietario con ID: " + calqui.getInmueble().getPropietario().getIdPropietario() + " recibió un aviso al teléfono " + calqui.getInmueble().getPropietario().getTelefono());
                 
-                //debo modificar el estado de la propiedad a no disponible
+                //debo modificar el estado de la propiedad a ocupado, o sea estado = 0
                 InmuebleData inmuData = new InmuebleData();
-                inmuData.estadoInmuebleDisponible(calqui.getInmueble().getIdInmueble()); 
+                inmuData.estadoInmuebleOcupado(calqui.getInmueble().getIdInmueble()); 
             }
             //cierro el objeto para liberar recursos
             ps.close();
@@ -126,9 +128,14 @@ public class CalquilerData {
             if(fila==1)
             {
                 JOptionPane.showMessageDialog(null, "El contrato de alquiler se ha anulado.");
-                //seteo inmueble a disponible
+                //seteo inmueble a disponible, o sea estado = 1
                 InmuebleData inmuData = new InmuebleData();
-                inmuData.estadoInmuebleOcupado(calqui.getInmueble().getIdInmueble()); 
+                //traer un calquiler con el num de id
+                //llamar al metodo buscar contrato Con ID
+                Calquiler calqui = new Calquiler();
+                CalquilerData calquiData = new CalquilerData();
+                calqui = calquiData.buscarContrato(idContrato);
+                inmuData.estadoInmuebleDisponible(calqui.getInmueble().getIdInmueble()); 
             }
             ps.close();
         } 
