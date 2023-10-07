@@ -2,6 +2,7 @@
 package inmobiliaria_mddp.entidades;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,19 +21,7 @@ public class Inquilino {
     public Inquilino() {
     }
 
-    public Inquilino(String NomCom, int cuitIn, int telContacto, String LugarDeTra, String NomCompletoGa, int CuitGarante, ArrayList<Inmueble> propiedades) {
-        this.NomCom = NomCom;
-        this.cuitIn = cuitIn;
-        this.telContacto = telContacto;
-        this.LugarDeTra = LugarDeTra;
-        this.NomCompletoGa = NomCompletoGa;
-        this.CuitGarante = CuitGarante;
-        this.propiedades = propiedades;
-    }
-    
-    
-
-    public Inquilino(int id_inquilino, String NomCom, int cuitIn, int telContacto, String LugarDeTra, String NomCompletoGa, int CuitGarante, ArrayList<Inmueble> propiedades) {
+    public Inquilino(int id_inquilino, String NomCom, int cuitIn, int telContacto, String LugarDeTra, String NomCompletoGa, int CuitGarante) {
         this.id_inquilino = id_inquilino;
         this.NomCom = NomCom;
         this.cuitIn = cuitIn;
@@ -40,10 +29,16 @@ public class Inquilino {
         this.LugarDeTra = LugarDeTra;
         this.NomCompletoGa = NomCompletoGa;
         this.CuitGarante = CuitGarante;
-        this.propiedades = propiedades;
-            }
-    
-    
+    }
+
+    public Inquilino(String NomCom, int cuitIn, int telContacto, String LugarDeTra, String NomCompletoGa, int CuitGarante) {
+        this.NomCom = NomCom;
+        this.cuitIn = cuitIn;
+        this.telContacto = telContacto;
+        this.LugarDeTra = LugarDeTra;
+        this.NomCompletoGa = NomCompletoGa;
+        this.CuitGarante = CuitGarante;
+    }
 
     public int getId_inquilino() {
         return id_inquilino;
@@ -100,20 +95,9 @@ public class Inquilino {
     public void setCuitGarante(int CuitGarante) {
         this.CuitGarante = CuitGarante;
     }
-
-    public ArrayList<Inmueble> getPropiedades() {
-        return propiedades;
-    }
-
-    public void setPropiedades(ArrayList<Inmueble> propiedades) {
-        this.propiedades = propiedades;
-    }
-
-    @Override
-    public String toString() {
-        return "Inquilino{" + "id_inquilino=" + id_inquilino + ", NomCom=" + NomCom + ", cuitIn=" + cuitIn + ", telContacto=" + telContacto + ", LugarDeTra=" + LugarDeTra + ", NomCompletoGa=" + NomCompletoGa + ", CuitGarante=" + CuitGarante + ", propiedades=" + propiedades + '}';
-    }
     
+
+
     
     
     
