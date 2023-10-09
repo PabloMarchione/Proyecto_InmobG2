@@ -9,28 +9,41 @@ public class Inmobiliaria_mddp {
 
     
     public static void main(String[] args) {
-        // TODO code application logic here
-        //Linea agregada solo para chequear push
+
         
-        ///PRUEBA DEL METODO PARA MARTIN
-        /* 
-        InmuebleData id = new InmuebleData();
-        id.estadoInmueble(12);
-        */
+        //alta inquilino
+//        Inquilino juan = new Inquilino ("Jose Rodriguez", 2036966695, 296064558,"Rio Cuarto", "Gomez Ruben",20369665);
+//        InquilinoData inquilino=new InquilinoData();
+//        inquilino.guardarInquilino(juan);
         
-        //hola soy Diana
+        // modificacion inquilino
         
-       /* PropietarioMartin propi = new PropietarioMartin(1, 3333);
-        InquilinoMartin inqui = new InquilinoMartin(1);
-        InmuebleMartin inmu = new InmuebleMartin(1, propi);
-        
-       
-        Calquiler alquilo = new Calquiler(LocalDate.of(2023, 12, 6), LocalDate.of(2023, 12, 7), 777, 1,inmu, inqui);
-        
-        CalquilerData alquiData = new CalquilerData();
-        
-        alquiData.generarContrato(alquilo);*/
-        
+        Inquilino juan = new Inquilino (1, "Juan Rodrigues", 2036966695, 296064558,"Rio Cuarto", "Gomez Ruben",20369665);
+        InquilinoData inquilino=new InquilinoData();
+        inquilino.modificarInquilino(juan);
+//
+//        Propietario propi = new Propietario(1, 22, "Lopez", "Juanjo", "Calle Buena", 88, "mail@domucho.com");
+//        Inquilino inqui = new Inquilino(1, "Pepe", 987, 4433, "SuEmpresa", "Josefa", 22);
+//        Inmueble inmu = new Inmueble(1, 44, "SiempreViva", 123, "casa", 234, 999,  true, propi);
+//        
+//       
+//        Calquiler alquilo = new Calquiler(LocalDate.of(2023, 12, 6), LocalDate.of(2023, 12, 7), 333, 1,inmu, inqui);
+//        
+//        CalquilerData alquiData = new CalquilerData();
+//        
+//        alquiData.generarContrato(alquilo);
+//        
+//        CalquilerData calquiData = new CalquilerData();
+//        
+//        Calquiler calqui = calquiData.buscarContrato(6);
+//        
+//        //int idContrato = calqui.getIdContrato();
+//        
+//        //System.out.println(idContrato);
+//        
+//        calquiData.anularContrato(calqui.getIdContrato());
+//
+//        
     }
     
 }

@@ -12,14 +12,26 @@ public class InmuebleMartin {
     private int superficie;
     private int precio;
     private boolean estado;
-    private PropietarioMartin propietario;
+    private Propietario propietario;
 
     public InmuebleMartin() {
     }
 
-    public InmuebleMartin(int idInmueble, PropietarioMartin propietario) {
+    public InmuebleMartin(int idInmueble, Propietario propietario) {
         this.idInmueble = idInmueble;
         this.propietario = propietario;
+    }
+
+    public int getIdInmueble() {
+        return idInmueble;
+    }
+
+    public void setIdInmueble(int idInmueble) {
+        this.idInmueble = idInmueble;
+    }
+
+    public Propietario getPropietario() {
+        return propietario;
     }
     
     
