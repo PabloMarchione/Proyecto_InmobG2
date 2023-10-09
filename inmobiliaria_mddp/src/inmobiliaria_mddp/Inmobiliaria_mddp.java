@@ -24,8 +24,6 @@ public class Inmobiliaria_mddp {
        
         Calquiler calquilo = new Calquiler(LocalDate.of(2023, 12, 7), LocalDate.of(2023, 12, 8), 222, 1,inmu2, inqui);
         
-        CalquilerData calquiData = new CalquilerData();
-        
         //calquiData.generarContrato(calquilo);
         
         //Calquiler calqui = calquiData.buscarContrato(6);
@@ -48,7 +46,12 @@ public class Inmobiliaria_mddp {
         {
             System.out.println(aux.getPrecioAlquiler());
         }
+        
+        CalquilerData calquiData = new CalquilerData();
+        calquiData.destruirContrato(7);
         */
+
+        
     }
     
 }

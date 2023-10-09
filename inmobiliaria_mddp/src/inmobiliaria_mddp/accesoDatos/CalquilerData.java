@@ -140,6 +140,10 @@ public class CalquilerData {
                 //modificar estado de inmueble a disponible
                 inmuData.estadoInmuebleDisponible(calqui.getInmueble().getIdInmueble()); 
             }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "No se encontró un contrato con ID: " + idContrato);
+            }
             ps.close();
         } 
          
@@ -266,5 +270,38 @@ public class CalquilerData {
             JOptionPane.showMessageDialog(null, "No se pudo acceder a la tabla calquiler. " + ex.getMessage() );
         }
         return calquis;
+    }
+    
+    //USAR CON CUIDADO, borrado físico full
+    public void destruirContrato(int idContrato)
+    {
+        //modifico fila de tabla calquiler
+        String sql = "DELETE FROM calquiler WHERE idContrato = ?";
+        
+        try 
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idContrato);
+            
+            //debo traer el inmueble antes del executeUpdate, por que sino después no lo encuentra porque el contrato no existe mas
+            //primero hago el borrado logico para poder poner disponible el inmueble
+            anularContrato(idContrato);
+            
+            int fila=ps.executeUpdate();
+            
+            if(fila==1)
+            {
+                JOptionPane.showMessageDialog(null, "El contrato de alquiler se ha destruido.");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "No se encontró un contrato con ID: " + idContrato);
+            }
+            ps.close();
+        } 
+         
+        catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo acceder a la tabla calquiler. " + ex.getMessage() );
+        }
     }
 }
