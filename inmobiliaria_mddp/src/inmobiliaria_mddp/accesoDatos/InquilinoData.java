@@ -23,6 +23,14 @@ public class InquilinoData {
     
     private Connection con;
     
+    /*
+    public InquilinoData(){
+        
+        con = ConexP.getConexion();
+    }
+    */
+    
+    
     public InquilinoData()
     {
         con = Conexion.getConexion();

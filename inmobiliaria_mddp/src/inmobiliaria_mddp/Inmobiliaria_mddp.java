@@ -42,11 +42,15 @@ public class Inmobiliaria_mddp {
 //        //System.out.println(idContrato);
 //        
 //        calquiData.anularContrato(calqui.getIdContrato());
-PropietarioData pro=new PropietarioData();
-Propietario propietario= new Propietario(1, 254, "P", "J", "A", 43, "f");
-//pro.agregarPropietario(propietario);
-pro.modificarPropietario(propietario);
-//        
+          
+        //PropietarioData pro=new PropietarioData();
+        //Propietario propietario= new Propietario(1, 254, "P", "J", "A", 43, "f");
+        //pro.agregarPropietario(propietario);
+        //pro.modificarPropietario(propietario);
+
+        
+        
+        
     }
     
 }
