@@ -93,7 +93,7 @@ public Propietario buscarPropietarioPorID(int id){
 
 public void modificarPropietario(Propietario propietario){
     
-    String sql= "UPDATE propietario SET cuit=?, apellido=?, nombre=?, domicilio=?, telefono=?, mail=? WHERE idPropietario";
+    String sql= "UPDATE propietario SET cuit=?, apellido=?, nombre=?, domicilio=?, telefono=?, mail=? WHERE idPropietario=?";
     
         try {
             PreparedStatement ps=con.prepareStatement(sql);
