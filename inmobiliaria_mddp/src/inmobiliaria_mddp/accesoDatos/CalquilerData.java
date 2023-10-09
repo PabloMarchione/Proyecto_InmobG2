@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -135,6 +137,7 @@ public class CalquilerData {
                 Calquiler calqui = new Calquiler();
                 CalquilerData calquiData = new CalquilerData();
                 calqui = calquiData.buscarContrato(idContrato);
+                //modificar estado de inmueble a disponible
                 inmuData.estadoInmuebleDisponible(calqui.getInmueble().getIdInmueble()); 
             }
             ps.close();
@@ -145,4 +148,123 @@ public class CalquilerData {
         }
     }
     
+    public void renovarContrato(Calquiler calqui)
+    {
+        CalquilerData calquiData = new CalquilerData();
+        
+        String sql = "UPDATE calquiler SET fechaIni = ?, fechaFin = ?, PrecioAlquiler = ?, Estado = 2 WHERE idContrato = ?";
+        //1 es fechaini, 2 es fechafin, 3 es precioalquiler y 4 es idContrato
+        //estado = 2 es renovado. 0 era anulado o inactivo, y 1 era activo o vigente
+        try 
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            ps.setDate(1, Date.valueOf(calqui.getFechaIni()));
+            ps.setDate(2, Date.valueOf(calqui.getFechaFin()));
+            ps.setInt(3, calqui.getPrecioAlquiler());
+            
+            ps.setInt(4, calqui.getIdContrato());
+            
+            int fila=ps.executeUpdate();
+            
+            if (fila == 1)
+            {
+                JOptionPane.showMessageDialog(null, "El contrato de alquiler se ha renovado.");
+            }
+            //cierro el objeto para liberar recursos
+            ps.close();
+        } 
+        catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo acceder a la tabla calquiler. " + ex.getMessage() );
+        }
+    }
+    
+    public List<Calquiler> listarVigentes()
+    {
+        String sql = "SELECT idContrato, fechaIni, fechaFin, PrecioAlquiler, Estado, idInmueble, idInquilino FROM calquiler WHERE Estado != 0";
+        
+        //declaro atributo que recibirá parametros del result set
+        List<Calquiler> calquis = new ArrayList<>();
+        
+        try 
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            //executeQuery devuleve un result set
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                //voy construyendo contratos y agrego a la lista
+                Calquiler calqui = new Calquiler();
+                calqui.setIdContrato(rs.getInt("idContrato"));
+                calqui.setFechaIni(rs.getDate("fechaIni").toLocalDate()); 
+                calqui.setFechaFin(rs.getDate("fechaFin").toLocalDate());
+                calqui.setPrecioAlquiler(rs.getInt("PrecioAlquiler"));
+                calqui.setEstado(rs.getInt("Estado"));
+                //debo traer un inmueble a partir del idInmueble
+                InmuebleData inmuData = new InmuebleData();
+                calqui.setInmueble(inmuData.buscarInmuebleConID(rs.getInt("idInmueble")));
+                //debo traer un inquilino a partir del idInquilino
+                InquilinoData inquiData = new InquilinoData();
+                calqui.setInquilino(inquiData.buscarInquilinoConID(rs.getInt("idInquilino")));
+                
+                //agrego contrato a la lista
+                calquis.add(calqui);
+            }
+            //cierro el objeto para liberar recursos
+            ps.close();
+        } 
+        catch (SQLException ex) 
+        {
+            JOptionPane.showMessageDialog(null, "No se pudo acceder a la tabla calquiler. " + ex.getMessage() );
+        }
+        return calquis;
+    }
+    
+    public List<Calquiler> historialPorInmueble(int idInmueble)
+    {
+        String sql = "SELECT idContrato, fechaIni, fechaFin, PrecioAlquiler, Estado, idInmueble, idInquilino FROM calquiler WHERE idInmueble = ? ";
+        
+        //declaro atributo que recibirá parametros del result set
+        List<Calquiler> calquis = new ArrayList<>();
+        
+        try 
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            //asigno valor a ? placeholder que me pasan por parámetro
+            ps.setInt(1, idInmueble);
+            
+            //executeQuery devuleve un result set, compuesto por UN solo contrato, o VACIO si no existe ese id
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                //voy construyendo contratos y agrego a la lista
+                Calquiler calqui = new Calquiler();
+                calqui.setIdContrato(rs.getInt("idContrato"));
+                calqui.setFechaIni(rs.getDate("fechaIni").toLocalDate()); 
+                calqui.setFechaFin(rs.getDate("fechaFin").toLocalDate());
+                calqui.setPrecioAlquiler(rs.getInt("PrecioAlquiler"));
+                calqui.setEstado(rs.getInt("Estado"));
+                //debo traer un inmueble a partir del idInmueble
+                InmuebleData inmuData = new InmuebleData();
+                calqui.setInmueble(inmuData.buscarInmuebleConID(rs.getInt("idInmueble")));
+                //debo traer un inquilino a partir del idInquilino
+                InquilinoData inquiData = new InquilinoData();
+                calqui.setInquilino(inquiData.buscarInquilinoConID(rs.getInt("idInquilino")));
+                
+                //agrego contrato a la lista
+                calquis.add(calqui);
+            }
+
+            //cierro el objeto para liberar recursos
+            ps.close();
+        } 
+        catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo acceder a la tabla calquiler. " + ex.getMessage() );
+        }
+        return calquis;
+    }
 }
