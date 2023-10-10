@@ -26,7 +26,6 @@ public class Menu extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         JM_Inmuebles = new javax.swing.JMenu();
-<<<<<<< HEAD
         jMInquilino = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -36,13 +35,6 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu4.setText("Edit");
         jMenuBar2.add(jMenu4);
-=======
-        jM_Calquileres = new javax.swing.JMenu();
-        jMI_crearEditar = new javax.swing.JMenuItem();
-        jM_Listas = new javax.swing.JMenu();
-        jMI_todos = new javax.swing.JMenuItem();
-        jMI_xInmueble = new javax.swing.JMenuItem();
->>>>>>> ddc6b11022530d1141374b4c5b14129dcf0f2f5d
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,32 +63,8 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenuBar1.add(JM_Inmuebles);
 
-<<<<<<< HEAD
         jMInquilino.setText("Inquilino");
         jMenuBar1.add(jMInquilino);
-=======
-        jM_Calquileres.setText("C. de Alquiler");
-
-        jMI_crearEditar.setText("Crear - Editar");
-        jMI_crearEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMI_crearEditarActionPerformed(evt);
-            }
-        });
-        jM_Calquileres.add(jMI_crearEditar);
-
-        jM_Listas.setText("Listar");
-
-        jMI_todos.setText("Todos");
-        jM_Listas.add(jMI_todos);
-
-        jMI_xInmueble.setText("Por Inmueble");
-        jM_Listas.add(jMI_xInmueble);
-
-        jM_Calquileres.add(jM_Listas);
-
-        jMenuBar1.add(jM_Calquileres);
->>>>>>> ddc6b11022530d1141374b4c5b14129dcf0f2f5d
 
         setJMenuBar(jMenuBar1);
 
@@ -122,15 +90,6 @@ public class Menu extends javax.swing.JFrame {
         JD_Menu.add(ventanaInmuebles);
         JD_Menu.moveToFront(ventanaInmuebles);
     }//GEN-LAST:event_JM_InmueblesMouseClicked
-
-    private void jMI_crearEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_crearEditarActionPerformed
-        JD_Menu.removeAll();
-        JD_Menu.repaint();
-        GestionCalquileres ventanaCrearEditar = new GestionCalquileres();
-        ventanaCrearEditar.setVisible(true);
-        JD_Menu.add(ventanaCrearEditar);
-        JD_Menu.moveToFront(ventanaCrearEditar);
-    }//GEN-LAST:event_jMI_crearEditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,15 +129,7 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane JD_Menu;
     private javax.swing.JMenu JM_Inmuebles;
-<<<<<<< HEAD
     private javax.swing.JMenu jMInquilino;
-=======
-    private javax.swing.JMenuItem jMI_crearEditar;
-    private javax.swing.JMenuItem jMI_todos;
-    private javax.swing.JMenuItem jMI_xInmueble;
-    private javax.swing.JMenu jM_Calquileres;
-    private javax.swing.JMenu jM_Listas;
->>>>>>> ddc6b11022530d1141374b4c5b14129dcf0f2f5d
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
