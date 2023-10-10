@@ -130,7 +130,7 @@ public class PropietarioData {
     
     public List<Propietario> ListarPropietarios(){
 
-        String sql= "SELECT * FROM propietario WHERE 1";
+        String sql= "SELECT * FROM propietario ORDER BY apellido ASC"; ///Modificado decia WHERE 1, y no tenia order by
 
         List<Propietario>propietario= new ArrayList<>();
 
@@ -159,6 +159,34 @@ public class PropietarioData {
 
              return propietario;
     
+    }
+    public Propietario buscarPropietarioPorCuit(int cuit){
+
+        String sql= "SELECT * FROM propietario WHERE cuit=?";
+        Propietario pro=null;
+            try {
+                PreparedStatement ps=con.prepareStatement(sql);
+                ps.setInt(1, cuit);
+                ResultSet rs=ps.executeQuery();
+                if(rs.next()){
+                    pro=new Propietario();
+                    pro.setIdPropietario(rs.getInt("idPropietario"));
+                    pro.setCuit(rs.getInt("cuit"));
+                    pro.setApellido(rs.getString("apellido"));
+                    pro.setNombre(rs.getString("nombre"));
+                    pro.setDomicilio(rs.getString("domicilio"));
+                    pro.setTelefono(rs.getInt("telefono"));
+                    pro.setMail(rs.getString("mail"));
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "No se encontró propietario con ese CUIT");
+                }
+                ps.close();
+            } catch (SQLException ex) {
+               JOptionPane.showMessageDialog(null, "No se pudo acceder a la tabla propietario");  
+            }
+            return pro;
     }
 }
 

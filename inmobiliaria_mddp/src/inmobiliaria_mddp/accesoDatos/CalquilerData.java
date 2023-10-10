@@ -145,7 +145,7 @@ public class CalquilerData {
                 CalquilerData calquiData = new CalquilerData();
                 calqui = calquiData.buscarContrato(idContrato);
                 //modificar estado de inmueble a disponible
-                inmuData.estadoInmuebleDisponible(calqui.getInmueble().getIdInmueble()); 
+                inmuData.estadoInmuebleDesocupado(calqui.getInmueble().getIdInmueble()); 
             }
             else
             {

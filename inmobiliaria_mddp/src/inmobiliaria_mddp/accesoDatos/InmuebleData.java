@@ -47,7 +47,7 @@ public class InmuebleData {
     
     //Agregado por Martin
     //disponible es lo mismo que Estado = 1 
-    public void estadoInmuebleDisponible(int id){
+    public void estadoInmuebleDesocupado(int id){
         
         try {
             String sql = "UPDATE inmueble SET Estado = 1 WHERE idInmueble = ?";
@@ -284,7 +284,42 @@ public class InmuebleData {
     }
     
     
-    
+    /////////////////////////////// BUSCAR POR CODIGO DEL INMUEBLE ---OK
+    public Inmueble buscarInmuebleConCodigo(int c) {
+        Inmueble inmueble = null;
+        String sql = "SELECT idInmueble, codigo, direccion, altura, tipo, superficie, precio, estado, idPropietario "
+                + "FROM inmueble WHERE codigo = ?";
+        PreparedStatement ps = null;//pide el try por el close, al pedo
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setInt(1,c );
+            
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                inmueble = new Inmueble();
+                inmueble.setIdInmueble(rs.getInt("idInmueble"));
+                inmueble.setCodigo(rs.getInt("codigo"));
+                inmueble.setDireccion(rs.getString("direccion"));
+                inmueble.setAltura(rs.getInt("altura"));
+                inmueble.setTipo(rs.getString("tipo"));
+                inmueble.setSuperficie(rs.getInt("superficie"));
+                inmueble.setPrecio(rs.getInt("precio"));
+                inmueble.setEstado(rs.getBoolean("estado"));
+                
+                PropietarioData pd = new PropietarioData();
+                int idp = rs.getInt("idpropietario");
+                Propietario p = pd.buscarPropietarioPorID(idp);
+                inmueble.setPropietario(p);
+                
+            }else {
+                JOptionPane.showMessageDialog(null, "No se encontro el inmueble");
+            }
+            ps.close();
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inmueble "+ex.getMessage());
+        }
+        return inmueble;
+    }
     
     
     
