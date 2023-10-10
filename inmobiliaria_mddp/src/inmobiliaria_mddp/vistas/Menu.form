@@ -45,10 +45,44 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JM_InmueblesMouseClicked"/>
           </Events>
         </Menu>
+<<<<<<< HEAD
         <Menu class="javax.swing.JMenu" name="jMInquilino">
           <Properties>
             <Property name="text" type="java.lang.String" value="Inquilino"/>
           </Properties>
+=======
+        <Menu class="javax.swing.JMenu" name="jM_Calquileres">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="C. de Alquiler"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMI_crearEditar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Crear - Editar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMI_crearEditarActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <Menu class="javax.swing.JMenu" name="jM_Listas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Listar"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMI_todos">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Todos"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMI_xInmueble">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Por Inmueble"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+          </SubComponents>
+>>>>>>> ddc6b11022530d1141374b4c5b14129dcf0f2f5d
         </Menu>
       </SubComponents>
     </Menu>
