@@ -142,4 +142,31 @@ public class InquilinoData {
         return inqui;
     }
     
+    
+    public void eliminarInquilino(int id_inquilino){
+        
+        
+        String sql="DELETE FROM `inquilino` WHERE id_inquilino=?";
+        
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            
+            ps.setInt(1, id_inquilino);
+            int filas=ps.executeUpdate();
+            if(filas>0){
+                
+                JOptionPane.showMessageDialog(null, "se borro inquilino correctamente"+ filas);
+                              
+                
+                
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al borrar" +ex);
+        }
+        
+        
+        
+        
+    }
 }

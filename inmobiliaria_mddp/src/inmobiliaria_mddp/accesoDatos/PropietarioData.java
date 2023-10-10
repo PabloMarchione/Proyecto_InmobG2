@@ -160,8 +160,10 @@ public class PropietarioData {
              return propietario;
     
     }
-}    
+}
+
     
+
 
 
     
