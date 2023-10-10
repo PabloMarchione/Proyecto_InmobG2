@@ -24,7 +24,9 @@ public class Menu extends javax.swing.JFrame {
         JM_Inmuebles = new javax.swing.JMenu();
         jM_Calquileres = new javax.swing.JMenu();
         jMI_crearEditar = new javax.swing.JMenuItem();
-        jMI_listar = new javax.swing.JMenuItem();
+        jM_Listas = new javax.swing.JMenu();
+        jMI_todos = new javax.swing.JMenuItem();
+        jMI_xInmueble = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,8 +65,15 @@ public class Menu extends javax.swing.JFrame {
         });
         jM_Calquileres.add(jMI_crearEditar);
 
-        jMI_listar.setText("Listar");
-        jM_Calquileres.add(jMI_listar);
+        jM_Listas.setText("Listar");
+
+        jMI_todos.setText("Todos");
+        jM_Listas.add(jMI_todos);
+
+        jMI_xInmueble.setText("Por Inmueble");
+        jM_Listas.add(jMI_xInmueble);
+
+        jM_Calquileres.add(jM_Listas);
 
         jMenuBar1.add(jM_Calquileres);
 
@@ -141,8 +150,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JDesktopPane JD_Menu;
     private javax.swing.JMenu JM_Inmuebles;
     private javax.swing.JMenuItem jMI_crearEditar;
-    private javax.swing.JMenuItem jMI_listar;
+    private javax.swing.JMenuItem jMI_todos;
+    private javax.swing.JMenuItem jMI_xInmueble;
     private javax.swing.JMenu jM_Calquileres;
+    private javax.swing.JMenu jM_Listas;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
