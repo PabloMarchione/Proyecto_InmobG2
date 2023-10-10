@@ -40,9 +40,9 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
         jL_propietario = new javax.swing.JLabel();
         jTF_propietario = new javax.swing.JTextField();
         jL_fechaIni = new javax.swing.JLabel();
-        jDCH_fechaIni = new org.netbeans.modules.form.InvalidComponent();
+        jDCH_fechaIni = new com.toedter.calendar.JDateChooser();
         jL_fechaFin = new javax.swing.JLabel();
-        jDCH_fechaFin = new org.netbeans.modules.form.InvalidComponent();
+        jDCH_fechaFin = new com.toedter.calendar.JDateChooser();
         jL_monto = new javax.swing.JLabel();
         jTF_PrecioAlqui = new javax.swing.JTextField();
         jB_nuevo = new javax.swing.JButton();
@@ -210,8 +210,8 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
     private javax.swing.JButton jB_nuevo;
     private javax.swing.JComboBox<String> jCB_inmueble;
     private javax.swing.JComboBox<String> jCB_inquilino;
-    private org.netbeans.modules.form.InvalidComponent jDCH_fechaFin;
-    private org.netbeans.modules.form.InvalidComponent jDCH_fechaIni;
+    private com.toedter.calendar.JDateChooser jDCH_fechaFin;
+    private com.toedter.calendar.JDateChooser jDCH_fechaIni;
     private javax.swing.JLabel jL_codigo;
     private javax.swing.JLabel jL_fechaFin;
     private javax.swing.JLabel jL_fechaIni;
