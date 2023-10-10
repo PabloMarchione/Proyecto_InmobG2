@@ -1,7 +1,6 @@
 
 package inmobiliaria_mddp.accesoDatos;
 
-import inmobiliaria_mddp.accesoDatos.*;
 import inmobiliaria_mddp.entidades.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,8 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -19,40 +16,15 @@ public class InmuebleData {
     
     private Connection con = null;
     
-    /*
-    public InmuebleData(){
-        
-        con = ConexP.getConexion();
-    }
-    */
+    
+//    public InmuebleData(){
+//        
+//        con = ConexP.getConexion();
+//    }
+    
     public InmuebleData(){
         
         con = Conexion.getConexion();
-    }
-    ///ESTAN TODOS LOS METODOS SIN PROBAR EN EL MAIN POR FALTA DE RECURSOS
-    ///ME FALTA EL BUSCADOR DE PROPIETARIODATA PARA TERMINAR
-    ///PODRIA AGREGAR MAS METODOS 
-    ///COMO LISTAR TODOS LOS INMUEBLES DE CIERTO PROPIETARIO
-    ///LISTAR TODOS LOS INMUEBLES DONDE FIGURE UN MISMO INQUILINO
-    ///O LO QUE REQUIERA LA CONSIGNA O EL USO DE VISTAS
-    
-    
-    
-    ///PARA CAMBIAR ESTADO A 0 CUANDO SE CREA UN CONTRATO
-    public void estadoInmueble(int id){
-        
-        try {
-            String sql = "UPDATE inmueble SET Estado = 0 WHERE idInmueble = ?";
-            PreparedStatement ps = con.prepareStatement(sql);//pide el try por el close, al pedo
-            ps.setInt(1, id);
-            int fila=ps.executeUpdate();
-            if(fila==1){
-                JOptionPane.showMessageDialog(null, "El inmueble pasa a estar ocupado. ");
-            }
-             ps.close();
-            } catch (SQLException e) {
-             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inmuebles");
-            }
     }
     
     //Agregado por Martin
@@ -92,12 +64,11 @@ public class InmuebleData {
     }
     
     
-    /////////////////////////////// INSERTAR INMUEBLE NUEVO
+    /////////////////////////////// INSERTAR INMUEBLE NUEVO ---OK
     public void guardarInmueble(Inmueble inmueble) {
         
         String sql = "INSERT INTO inmueble (codigo, direccion, altura, tipo, superficie, precio, estado, idPropietario) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        
         try{
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,inmueble.getCodigo());
@@ -121,7 +92,8 @@ public class InmuebleData {
         }
     }
     
-    /////////////////////////////// BUSCAR POR ID DEL INMUEBLE
+    
+    /////////////////////////////// BUSCAR POR ID DEL INMUEBLE ---OK
     public Inmueble buscarInmuebleConID(int id) {
         Inmueble inmueble = null;
         String sql = "SELECT idInmueble, codigo, direccion, altura, tipo, superficie, precio, estado, idPropietario "
@@ -142,12 +114,12 @@ public class InmuebleData {
                 inmueble.setSuperficie(rs.getInt("superficie"));
                 inmueble.setPrecio(rs.getInt("precio"));
                 inmueble.setEstado(rs.getBoolean("estado"));
-                /*
+                
                 PropietarioData pd = new PropietarioData();
                 int idp = rs.getInt("idpropietario");
-                Propietario p = pd.buscarPropietario(idp);
+                Propietario p = pd.buscarPropietarioPorID(idp);
                 inmueble.setPropietario(p);
-                */
+                
             }else {
                 JOptionPane.showMessageDialog(null, "No se encontro el inmueble");
             }
@@ -159,7 +131,7 @@ public class InmuebleData {
     }
     
     
-    /////////////////////////////// BUSCAR POR ID DEL PROPIETARIO
+    /////////////////////////////// BUSCAR POR ID DEL PROPIETARIO, TRAE EL PRIMERO QUE ENCUENTRA SI HAY VARIOS ---OK
     public Inmueble buscarInmueblePorPropietario(int id) {
         Inmueble inmueble = null;
         String sql = "SELECT idInmueble, codigo, direccion, altura, tipo, superficie, precio, estado, idPropietario "
@@ -181,15 +153,10 @@ public class InmuebleData {
                 inmueble.setPrecio(rs.getInt("precio"));
                 inmueble.setEstado(rs.getBoolean("estado"));
                 
-                ///PRECISO EL METODO DE PROPIETARIODATA
-                /*
                 PropietarioData pd = new PropietarioData();
                 int idp = rs.getInt("idPropietario");
-                Propietario p = pd.buscarPropietario(idp);
+                Propietario p = pd.buscarPropietarioPorID(idp);
                 inmueble.setPropietario(p);
-                */
-                
-                
             }else {
                 JOptionPane.showMessageDialog(null, "No se encontro el inmueble");
             }
@@ -200,7 +167,43 @@ public class InmuebleData {
         return inmueble;
     }
     
-    /////////////////////////////// TRAE A TODOS! LOS INMUEBLES
+    
+    /////////////////////////////// TRAE A TODOS LOS INMUEBLES DE ESE PROPIETARIO ---OK
+    public List<Inmueble> listarInmueblesPorPropietario(int id) {
+        
+        List<Inmueble> inmuebles = new ArrayList<>();
+        try{
+            String sql = "SELECT * FROM inmueble WHERE idPropietario = ?";///CON EL ORDER BY SE PUEDEN ORDENAR PARA MOSTRAR EN LA VISTA MEJOR
+            PreparedStatement ps = con.prepareStatement(sql); //pide el try por el close, al pedo
+            ps.setInt(1,id );
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Inmueble inmueble = new Inmueble();
+                inmueble.setIdInmueble(rs.getInt("idInmueble"));
+                inmueble.setCodigo(rs.getInt("codigo"));
+                inmueble.setDireccion(rs.getString("direccion"));
+                inmueble.setAltura(rs.getInt("altura"));
+                inmueble.setTipo(rs.getString("tipo"));
+                inmueble.setSuperficie(rs.getInt("superficie"));
+                inmueble.setPrecio(rs.getInt("precio"));
+                inmueble.setEstado(rs.getBoolean("estado"));
+                /*
+                PropietarioData pd = new PropietarioData();
+                int idp = rs.getInt("idpropietario");
+                Propietario p = pd.buscarPropietarioPorID(idp);
+                inmueble.setPropietario(p);
+                */
+                inmuebles.add(inmueble);
+            }
+            ps.close();
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inmueble "+ex.getMessage());
+        }
+        return inmuebles;
+    }
+    
+    
+    /////////////////////////////// TRAE A TODOS! LOS INMUEBLES ---OK
     public List<Inmueble> listarInmuebles() {
         
         List<Inmueble> inmuebles = new ArrayList<>();
@@ -218,14 +221,11 @@ public class InmuebleData {
                 inmueble.setSuperficie(rs.getInt("superficie"));
                 inmueble.setPrecio(rs.getInt("precio"));
                 inmueble.setEstado(rs.getBoolean("estado"));
-                /*
-                ////PROBLEMASSSSSSSSSSSSSSSSS
+                
                 PropietarioData pd = new PropietarioData();
                 int idp = rs.getInt("idpropietario");
-                Propietario p = pd.buscarPropietario(idp);
-                
+                Propietario p = pd.buscarPropietarioPorID(idp);
                 inmueble.setPropietario(p);
-                */
                 inmuebles.add(inmueble);
             }
             ps.close();
@@ -235,7 +235,38 @@ public class InmuebleData {
         return inmuebles;
     }
     
-    /////////////////////////////// BORRAR INMUEBLE DE LA BBDD
+    
+    /////////////////////////////// MODIFICAR INMUEBLE ---OK
+    public void modificarInmueble (Inmueble inmueble){
+        
+        String sql ="UPDATE inmueble SET "
+                + "codigo=?, direccion=?, altura=?, tipo=?, superficie=?, precio=?, estado=?, idPropietario=? "
+                + "WHERE  idInmueble=?";
+        
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1,inmueble.getCodigo());
+            ps.setString(2,inmueble.getDireccion());
+            ps.setInt(3,inmueble.getAltura());
+            ps.setString(4,inmueble.getTipo());
+            ps.setInt(5,inmueble.getSuperficie());
+            ps.setInt(6,inmueble.getPrecio());
+            ps.setBoolean(7,inmueble.isEstado());
+            ps.setInt(8,inmueble.getPropietario().getIdPropietario());
+            ps.setInt(9,inmueble.getIdInmueble());
+            
+            int exito = ps.executeUpdate();
+            
+            if(exito==1){
+                JOptionPane.showMessageDialog(null,"Se modifico el Inmueble "+inmueble.getIdInmueble());
+                }  
+        } catch (SQLException ex) {
+               JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inmueble"+ex);
+            }
+    }
+    
+    
+    /////////////////////////////// BORRAR INMUEBLE DE LA BBDD ---OK
     public void deleteInmueble(int id) {
 
     try {
@@ -252,8 +283,18 @@ public class InmuebleData {
         }
     }
     
-    /////////////////////////////// NO ELIMINA, CAMBIA EL ESTADO A 0 EN DISPONIBLE
-    public void eliminarInmueble(int id) {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /////////////////////////////// NO ELIMINA, CAMBIA EL ESTADO A 0 EN DISPONIBLE ---DEPRECADO
+    /*public void eliminarInmueble(int id) {
 
     try {
         String sql = "UPDATE inmueble SET disponible = 0 WHERE idInmueble = ? ";
@@ -269,8 +310,27 @@ public class InmuebleData {
          JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inmueble");
         }
     }
+    */
     
     
+    
+    ///PARA CAMBIAR ESTADO A 0 CUANDO SE CREA UN CONTRATO ----DEPRECADO
+    /*public void estadoInmueble(int id){
+        
+        try {
+            String sql = "UPDATE inmueble SET Estado = 0 WHERE idInmueble = ?";
+            PreparedStatement ps = con.prepareStatement(sql);//pide el try por el close, al pedo
+            ps.setInt(1, id);
+            int fila=ps.executeUpdate();
+            if(fila==1){
+                JOptionPane.showMessageDialog(null, "El inmueble pasa a estar ocupado. ");
+            }
+             ps.close();
+            } catch (SQLException e) {
+             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inmuebles");
+            }
+    }
+    */
     
     
 }
