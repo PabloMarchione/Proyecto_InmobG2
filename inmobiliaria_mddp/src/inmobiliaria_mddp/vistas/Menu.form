@@ -32,11 +32,6 @@
             <Property name="text" type="java.lang.String" value="File"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
-          </Properties>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="JM_Inmuebles">
           <Properties>
             <Property name="text" type="java.lang.String" value="Inmuebles"/>
@@ -49,6 +44,38 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Inquilino"/>
           </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jM_calquiler">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="C. de Alquiler"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMI_AlquiCrearEditar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Crear - Editar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMI_AlquiCrearEditarActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <Menu class="javax.swing.JMenu" name="jM_Listar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Listar"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMI_listaTodos">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Todos"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMI_listaXInmu">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Por Inmueble"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
@@ -96,7 +123,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="438" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="440" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
