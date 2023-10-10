@@ -18,9 +18,9 @@ public class Inmobiliaria_mddp {
         
         // modificacion inquilino
         
-        Inquilino juan = new Inquilino (1, "Juan Rodrigues", 2036966695, 296064558,"Rio Cuarto", "Gomez Ruben",20369665);
+        /*Inquilino juan = new Inquilino (1, "Juan Rodrigues", 2036966695, 296064558,"Rio Cuarto", "Gomez Ruben",20369665);
         InquilinoData inquilino=new InquilinoData();
-        inquilino.modificarInquilino(juan);
+        inquilino.modificarInquilino(juan*/
 //
 //        Propietario propi = new Propietario(1, 22, "Lopez", "Juanjo", "Calle Buena", 88, "mail@domucho.com");
 //        Inquilino inqui = new Inquilino(1, "Pepe", 987, 4433, "SuEmpresa", "Josefa", 22);
@@ -42,7 +42,10 @@ public class Inmobiliaria_mddp {
 //        //System.out.println(idContrato);
 //        
 //        calquiData.anularContrato(calqui.getIdContrato());
-//
+PropietarioData pro=new PropietarioData();
+Propietario propietario= new Propietario(1, 254, "P", "J", "A", 43, "f");
+//pro.agregarPropietario(propietario);
+pro.modificarPropietario(propietario);
 //        
     }
     
