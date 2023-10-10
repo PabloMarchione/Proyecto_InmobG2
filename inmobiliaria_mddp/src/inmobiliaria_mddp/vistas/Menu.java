@@ -22,6 +22,9 @@ public class Menu extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         JM_Inmuebles = new javax.swing.JMenu();
+        jM_Calquileres = new javax.swing.JMenu();
+        jMI_crearEditar = new javax.swing.JMenuItem();
+        jMI_listar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,6 +53,21 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenuBar1.add(JM_Inmuebles);
 
+        jM_Calquileres.setText("C. de Alquiler");
+
+        jMI_crearEditar.setText("Crear - Editar");
+        jMI_crearEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMI_crearEditarActionPerformed(evt);
+            }
+        });
+        jM_Calquileres.add(jMI_crearEditar);
+
+        jMI_listar.setText("Listar");
+        jM_Calquileres.add(jMI_listar);
+
+        jMenuBar1.add(jM_Calquileres);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -74,6 +92,15 @@ public class Menu extends javax.swing.JFrame {
         JD_Menu.add(ventanaInmuebles);
         JD_Menu.moveToFront(ventanaInmuebles);
     }//GEN-LAST:event_JM_InmueblesMouseClicked
+
+    private void jMI_crearEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_crearEditarActionPerformed
+        JD_Menu.removeAll();
+        JD_Menu.repaint();
+        GestionCalquileres ventanaCrearEditar = new GestionCalquileres();
+        ventanaCrearEditar.setVisible(true);
+        JD_Menu.add(ventanaCrearEditar);
+        JD_Menu.moveToFront(ventanaCrearEditar);
+    }//GEN-LAST:event_jMI_crearEditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,6 +140,9 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane JD_Menu;
     private javax.swing.JMenu JM_Inmuebles;
+    private javax.swing.JMenuItem jMI_crearEditar;
+    private javax.swing.JMenuItem jMI_listar;
+    private javax.swing.JMenu jM_Calquileres;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
