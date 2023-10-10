@@ -40,9 +40,9 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
         jL_propietario = new javax.swing.JLabel();
         jTF_propietario = new javax.swing.JTextField();
         jL_fechaIni = new javax.swing.JLabel();
-        jDCH_fechaIni = new com.toedter.calendar.JDateChooser();
+        jDCH_fechaIni = new org.netbeans.modules.form.InvalidComponent();
         jL_fechaFin = new javax.swing.JLabel();
-        jDCH_fechaFin = new com.toedter.calendar.JDateChooser();
+        jDCH_fechaFin = new org.netbeans.modules.form.InvalidComponent();
         jL_monto = new javax.swing.JLabel();
         jTF_PrecioAlqui = new javax.swing.JTextField();
         jB_nuevo = new javax.swing.JButton();
@@ -164,9 +164,9 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
                     .addComponent(jL_inquilino)
                     .addComponent(jCB_inquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jL_garante))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jL_garante)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jL_inmueble)
@@ -210,8 +210,8 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
     private javax.swing.JButton jB_nuevo;
     private javax.swing.JComboBox<String> jCB_inmueble;
     private javax.swing.JComboBox<String> jCB_inquilino;
-    private com.toedter.calendar.JDateChooser jDCH_fechaFin;
-    private com.toedter.calendar.JDateChooser jDCH_fechaIni;
+    private org.netbeans.modules.form.InvalidComponent jDCH_fechaFin;
+    private org.netbeans.modules.form.InvalidComponent jDCH_fechaIni;
     private javax.swing.JLabel jL_codigo;
     private javax.swing.JLabel jL_fechaFin;
     private javax.swing.JLabel jL_fechaIni;

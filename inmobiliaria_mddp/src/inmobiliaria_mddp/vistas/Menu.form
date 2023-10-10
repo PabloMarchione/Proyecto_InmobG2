@@ -2,6 +2,29 @@
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
+    <Component class="javax.swing.JMenuItem" name="jMenuItem1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jMenuItem1"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JMenuBar" name="jMenuBar2">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="jMenu3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="File"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Edit"/>
+          </Properties>
+        </Menu>
+      </SubComponents>
+    </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
@@ -22,6 +45,12 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JM_InmueblesMouseClicked"/>
           </Events>
         </Menu>
+<<<<<<< HEAD
+        <Menu class="javax.swing.JMenu" name="jMInquilino">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Inquilino"/>
+          </Properties>
+=======
         <Menu class="javax.swing.JMenu" name="jM_Calquileres">
           <Properties>
             <Property name="text" type="java.lang.String" value="C. de Alquiler"/>
@@ -53,6 +82,7 @@
               </SubComponents>
             </Menu>
           </SubComponents>
+>>>>>>> ddc6b11022530d1141374b4c5b14129dcf0f2f5d
         </Menu>
       </SubComponents>
     </Menu>

@@ -17,16 +17,32 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
         JD_Menu = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         JM_Inmuebles = new javax.swing.JMenu();
+<<<<<<< HEAD
+        jMInquilino = new javax.swing.JMenu();
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenu3.setText("File");
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Edit");
+        jMenuBar2.add(jMenu4);
+=======
         jM_Calquileres = new javax.swing.JMenu();
         jMI_crearEditar = new javax.swing.JMenuItem();
         jM_Listas = new javax.swing.JMenu();
         jMI_todos = new javax.swing.JMenuItem();
         jMI_xInmueble = new javax.swing.JMenuItem();
+>>>>>>> ddc6b11022530d1141374b4c5b14129dcf0f2f5d
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,6 +71,10 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenuBar1.add(JM_Inmuebles);
 
+<<<<<<< HEAD
+        jMInquilino.setText("Inquilino");
+        jMenuBar1.add(jMInquilino);
+=======
         jM_Calquileres.setText("C. de Alquiler");
 
         jMI_crearEditar.setText("Crear - Editar");
@@ -76,6 +96,7 @@ public class Menu extends javax.swing.JFrame {
         jM_Calquileres.add(jM_Listas);
 
         jMenuBar1.add(jM_Calquileres);
+>>>>>>> ddc6b11022530d1141374b4c5b14129dcf0f2f5d
 
         setJMenuBar(jMenuBar1);
 
@@ -149,14 +170,22 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane JD_Menu;
     private javax.swing.JMenu JM_Inmuebles;
+<<<<<<< HEAD
+    private javax.swing.JMenu jMInquilino;
+=======
     private javax.swing.JMenuItem jMI_crearEditar;
     private javax.swing.JMenuItem jMI_todos;
     private javax.swing.JMenuItem jMI_xInmueble;
     private javax.swing.JMenu jM_Calquileres;
     private javax.swing.JMenu jM_Listas;
+>>>>>>> ddc6b11022530d1141374b4c5b14129dcf0f2f5d
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 
 
