@@ -2,16 +2,20 @@
 package inmobiliaria_mddp.vistas;
 import inmobiliaria_mddp.accesoDatos.*;
 import inmobiliaria_mddp.entidades.*;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 
 public class GestionInmuebles extends javax.swing.JInternalFrame {
-
-    
+private DefaultComboBoxModel modelito = new DefaultComboBoxModel();///PARA USAR EL GETINDEXOF EN EL BUSCADOR
+                       
     public GestionInmuebles() {
         initComponents();
         //Iniciales
-        
-        
+        JC_ListaPropietarios.setModel(modelito);///RESET COMBO MODEL
+        cargarListaPropietarios();///LLENO LISTA COMBO
     }
 
     
@@ -33,25 +37,25 @@ public class GestionInmuebles extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        JC_ListaPropietarios = new javax.swing.JComboBox<>();
         JB_Nuevo = new javax.swing.JButton();
         JB_Guardar = new javax.swing.JButton();
         JB_Eliminar = new javax.swing.JButton();
+        JB_Buscar = new javax.swing.JButton();
 
+        setClosable(true);
         setTitle("Gestion de inmuebles");
         setName(""); // NOI18N
 
-        JT_Codigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JT_CodigoActionPerformed(evt);
-            }
-        });
+        JT_Direccion.setEnabled(false);
 
-        JT_Direccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JT_DireccionActionPerformed(evt);
-            }
-        });
+        JT_Altura.setEnabled(false);
+
+        JT_Tipo.setEnabled(false);
+
+        JT_Superficie.setEnabled(false);
+
+        JT_Precio.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setText("CONTROL DE INMUEBLES");
@@ -70,7 +74,7 @@ public class GestionInmuebles extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Precio :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JC_ListaPropietarios.setEnabled(false);
 
         JB_Nuevo.setText("Nuevo");
         JB_Nuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -80,6 +84,7 @@ public class GestionInmuebles extends javax.swing.JInternalFrame {
         });
 
         JB_Guardar.setText("Guardar");
+        JB_Guardar.setEnabled(false);
         JB_Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JB_GuardarActionPerformed(evt);
@@ -88,6 +93,18 @@ public class GestionInmuebles extends javax.swing.JInternalFrame {
 
         JB_Eliminar.setText("Eliminar");
         JB_Eliminar.setEnabled(false);
+        JB_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_EliminarActionPerformed(evt);
+            }
+        });
+
+        JB_Buscar.setText("Buscar");
+        JB_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_BuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,10 +120,6 @@ public class GestionInmuebles extends javax.swing.JInternalFrame {
                     .addComponent(JB_Nuevo))
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JB_Guardar)
-                        .addGap(75, 75, 75)
-                        .addComponent(JB_Eliminar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(JT_Codigo, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
@@ -124,7 +137,14 @@ public class GestionInmuebles extends javax.swing.JInternalFrame {
                                 .addComponent(JT_Precio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
                                 .addComponent(JT_Altura, javax.swing.GroupLayout.Alignment.LEADING))))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(JB_Guardar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JB_Buscar)
+                            .addGap(35, 35, 35)
+                            .addComponent(JB_Eliminar))
+                        .addComponent(JC_ListaPropietarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -133,38 +153,35 @@ public class GestionInmuebles extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JT_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JT_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JT_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JT_Altura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JT_Superficie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JT_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JT_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(JT_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(JT_Altura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JT_Superficie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JT_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))))
+                    .addComponent(JT_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JC_ListaPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JB_Nuevo)
                     .addComponent(JB_Guardar)
-                    .addComponent(JB_Eliminar))
+                    .addComponent(JB_Eliminar)
+                    .addComponent(JB_Buscar))
                 .addGap(38, 38, 38))
         );
 
@@ -173,29 +190,23 @@ public class GestionInmuebles extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JT_DireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_DireccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JT_DireccionActionPerformed
-
     private void JB_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_NuevoActionPerformed
         limpiarCampos();
+        enableCampos();
+        cargarListaPropietarios();
+        JB_Guardar.setEnabled(true);
     }//GEN-LAST:event_JB_NuevoActionPerformed
-
-    private void JT_CodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_CodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JT_CodigoActionPerformed
 
     private void JB_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_GuardarActionPerformed
         
-        
-        ///FALTA RESOLVER PROPIETARIO Y EL METODO BUSCAR POR ID HACER UN BUSCAR POR CODIGO
         InmuebleData id = new InmuebleData();
         Inmueble i = new Inmueble();
         aGuardar(i);
         if(JB_Guardar.getText().equalsIgnoreCase("modificar")){
-            int idi = id.buscarInmuebleConID(Integer.parseInt(JT_Codigo.getText().trim())).getIdInmueble();
-            i.setIdInmueble(idi);
-            id.modificarInmueble(i);
+            int idinm = id.buscarInmuebleConCodigo(Integer.parseInt(JT_Codigo.getText().trim())).getIdInmueble();
+            i.setIdInmueble(idinm);///ID NO SE MODIFICA NUNCA
+            i.setEstado(i.isEstado());///ESTADO SOLO SE MODIFICA DESDE GESTION ALQUILER
+            id.modificarInmueble(i);///TODO LO DEMAS
         }else{
             i.setEstado(true);
             id.guardarInmueble(i);
@@ -203,18 +214,77 @@ public class GestionInmuebles extends javax.swing.JInternalFrame {
         limpiarCampos();
     }//GEN-LAST:event_JB_GuardarActionPerformed
 
+    private void JB_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_BuscarActionPerformed
+        
+        InmuebleData id = new InmuebleData();
+        List<Inmueble> listado = id.listarInmuebles();
+        boolean encontrado = false;
+        if(JT_Codigo.getText()==null || JT_Codigo.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(this, "Ingrese numeros enteros");
+            limpiarCampos();
+        }else{
+            int c = 0;
+            try {
+                c = Integer.parseInt(JT_Codigo.getText().trim());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Ingrese SOLO numeros enteros");
+                limpiarCampos();
+            }
+            for(Inmueble i : listado){
+                    if(c == i.getCodigo()){
+                        enableCampos();
+                        JT_Codigo.setText(i.getCodigo()+"");
+                        JT_Tipo.setText(i.getTipo());
+                        JT_Superficie.setText(i.getSuperficie()+"");
+                        JT_Direccion.setText(i.getDireccion());
+                        JT_Altura.setText(i.getAltura()+"");
+                        JT_Precio.setText(i.getPrecio()+"");
+                        
+                        ///USO METODOS PROPIETARIO
+                        PropietarioData pd = new PropietarioData();
+                        Propietario p = pd.buscarPropietarioPorID(i.getPropietario().getIdPropietario());
+                        
+                        
+                        ///USO EL MODELO DE COMBOBOX COMPARANDO EL LISTADO
+                        int x = modelito.getIndexOf(p.getApellido()+" "+p.getNombre()+" - "+p.getCuit());
+                        ///SELECCIONO LA COINCIDENCIA
+                        JC_ListaPropietarios.setSelectedIndex(x);
+                        
+                        JB_Eliminar.setEnabled(true);
+                        JB_Guardar.setText("Modificar");
+                        JB_Guardar.setEnabled(true);
+                        encontrado = true;
+                    }
+            }
+            if(!encontrado){
+                JOptionPane.showMessageDialog(this, "El Inmueble con ese codigo no existe");
+                JB_Eliminar.setEnabled(false);
+                limpiarCampos();
+            }
+        }     
+    }//GEN-LAST:event_JB_BuscarActionPerformed
+
+    private void JB_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_EliminarActionPerformed
+        InmuebleData id = new InmuebleData();
+        Inmueble aEliminar = id.buscarInmuebleConCodigo(Integer.parseInt(JT_Codigo.getText().trim()));
+        id.deleteInmueble(aEliminar.getIdInmueble());
+
+        limpiarCampos();
+    }//GEN-LAST:event_JB_EliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JB_Buscar;
     private javax.swing.JButton JB_Eliminar;
     private javax.swing.JButton JB_Guardar;
     private javax.swing.JButton JB_Nuevo;
+    private javax.swing.JComboBox<String> JC_ListaPropietarios;
     private javax.swing.JTextField JT_Altura;
     private javax.swing.JTextField JT_Codigo;
     private javax.swing.JTextField JT_Direccion;
     private javax.swing.JTextField JT_Precio;
     private javax.swing.JTextField JT_Superficie;
     private javax.swing.JTextField JT_Tipo;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -232,8 +302,32 @@ private void limpiarCampos (){
     JT_Precio.setText("");
     JT_Superficie.setText("");
     JT_Tipo.setText("");
+    JB_Guardar.setText("Guardar");
+    JB_Guardar.setEnabled(false);
     JB_Eliminar.setEnabled(false); 
 }
+
+private void enableCampos(){
+    
+    JT_Direccion.setEnabled(true);
+    JT_Altura.setEnabled(true);
+    JT_Precio.setEnabled(true);
+    JT_Superficie.setEnabled(true);
+    JT_Tipo.setEnabled(true);
+    JC_ListaPropietarios.setEnabled(true);
+}
+
+
+
+private List cargarListaPropietarios(){
+    PropietarioData pd = new PropietarioData();
+    List<Propietario> lp = pd.ListarPropietarios();
+    for(Propietario p : lp){
+        JC_ListaPropietarios.addItem(p.getApellido()+" "+p.getNombre()+" - "+p.getCuit());
+    }
+    return lp;
+}
+
 
 private Inmueble aGuardar(Inmueble i){
     
@@ -243,13 +337,30 @@ private Inmueble aGuardar(Inmueble i){
     i.setPrecio(Integer.parseInt(JT_Precio.getText().trim()));
     i.setSuperficie(Integer.parseInt(JT_Superficie.getText().trim()));
     i.setTipo(JT_Tipo.getText());
-    ///TODOS MENOS:
+    /// TODOS MENOS:
     /// ID SE GENERA SOLO
-    /// AL CREAR ES SIEMPRE DISPONIBLE - ESTADO =
+    /// AL CREAR ES SIEMPRE DESOCUPADO - ESTADO = 1
     /// PROPIETARIO AL SER COMBOBOX LO LLAMO DE OTRA MANERA
     
+    int indiceSeleccion = JC_ListaPropietarios.getSelectedIndex();///INDICE EN LA LISTA
+    String x = JC_ListaPropietarios.getItemAt(indiceSeleccion);///SELECCION DEL ITEM, X MARKS THE SPOT CAPTAIN!
+    int pos = x.indexOf("-");///DESDE ACA +1
+    int cuicui = Integer.parseInt(x.substring(pos+1, x.length()).trim());///CORTO HASTA EL FIN Y TRAIGO EL CUIT
+
+    PropietarioData pd = new PropietarioData();
+    Propietario p = pd.buscarPropietarioPorCuit(cuicui);
+    i.setPropietario(p);
+
     return i;
 }
 
+
+///DEPRECADO
+//private void autoSelectCombo(Propietario p){
+//    
+//    //JC_ListaPropietarios.removeAllItems();
+//    ///JC_ListaPropietarios.addItem(p.getApellido()+" "+p.getNombre()+" - "+p.getCuit());
+//    ///JC_ListaPropietarios.setSelectedIndex(0);
+//}
 
 }
