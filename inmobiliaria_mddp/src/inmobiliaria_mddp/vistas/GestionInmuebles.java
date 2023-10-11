@@ -3,16 +3,19 @@ package inmobiliaria_mddp.vistas;
 import inmobiliaria_mddp.accesoDatos.*;
 import inmobiliaria_mddp.entidades.*;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 
 public class GestionInmuebles extends javax.swing.JInternalFrame {
-
-    
+private DefaultComboBoxModel modelito = new DefaultComboBoxModel();///PARA USAR EL GETINDEXOF EN EL BUSCADOR
+                       
     public GestionInmuebles() {
         initComponents();
         //Iniciales
-        cargarListaPropietarios();
-        
+        JC_ListaPropietarios.setModel(modelito);///RESET COMBO MODEL
+        cargarListaPropietarios();///LLENO LISTA COMBO
     }
 
     
@@ -44,18 +47,7 @@ public class GestionInmuebles extends javax.swing.JInternalFrame {
         setTitle("Gestion de inmuebles");
         setName(""); // NOI18N
 
-        JT_Codigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JT_CodigoActionPerformed(evt);
-            }
-        });
-
         JT_Direccion.setEnabled(false);
-        JT_Direccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JT_DireccionActionPerformed(evt);
-            }
-        });
 
         JT_Altura.setEnabled(false);
 
@@ -82,13 +74,7 @@ public class GestionInmuebles extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Precio :");
 
-        JC_ListaPropietarios.setSelectedIndex(-1);
         JC_ListaPropietarios.setEnabled(false);
-        JC_ListaPropietarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JC_ListaPropietariosActionPerformed(evt);
-            }
-        });
 
         JB_Nuevo.setText("Nuevo");
         JB_Nuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -107,6 +93,11 @@ public class GestionInmuebles extends javax.swing.JInternalFrame {
 
         JB_Eliminar.setText("Eliminar");
         JB_Eliminar.setEnabled(false);
+        JB_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_EliminarActionPerformed(evt);
+            }
+        });
 
         JB_Buscar.setText("Buscar");
         JB_Buscar.addActionListener(new java.awt.event.ActionListener() {
@@ -199,18 +190,12 @@ public class GestionInmuebles extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JT_DireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_DireccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JT_DireccionActionPerformed
-
     private void JB_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_NuevoActionPerformed
         limpiarCampos();
         enableCampos();
+        cargarListaPropietarios();
+        JB_Guardar.setEnabled(true);
     }//GEN-LAST:event_JB_NuevoActionPerformed
-
-    private void JT_CodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_CodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JT_CodigoActionPerformed
 
     private void JB_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_GuardarActionPerformed
         
@@ -218,23 +203,74 @@ public class GestionInmuebles extends javax.swing.JInternalFrame {
         Inmueble i = new Inmueble();
         aGuardar(i);
         if(JB_Guardar.getText().equalsIgnoreCase("modificar")){
-            int idi = id.buscarInmuebleConID(Integer.parseInt(JT_Codigo.getText().trim())).getIdInmueble();
-            i.setIdInmueble(idi);
-            id.modificarInmueble(i);
+            int idinm = id.buscarInmuebleConCodigo(Integer.parseInt(JT_Codigo.getText().trim())).getIdInmueble();
+            i.setIdInmueble(idinm);///ID NO SE MODIFICA NUNCA
+            i.setEstado(i.isEstado());///ESTADO SOLO SE MODIFICA DESDE GESTION ALQUILER
+            id.modificarInmueble(i);///TODO LO DEMAS
         }else{
-            i.setEstado(false);
+            i.setEstado(true);
             id.guardarInmueble(i);
         }
         limpiarCampos();
     }//GEN-LAST:event_JB_GuardarActionPerformed
 
-    private void JC_ListaPropietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JC_ListaPropietariosActionPerformed
-        
-    }//GEN-LAST:event_JC_ListaPropietariosActionPerformed
-
     private void JB_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_BuscarActionPerformed
         
+        InmuebleData id = new InmuebleData();
+        List<Inmueble> listado = id.listarInmuebles();
+        boolean encontrado = false;
+        if(JT_Codigo.getText()==null || JT_Codigo.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(this, "Ingrese numeros enteros");
+            limpiarCampos();
+        }else{
+            int c = 0;
+            try {
+                c = Integer.parseInt(JT_Codigo.getText().trim());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Ingrese SOLO numeros enteros");
+                limpiarCampos();
+            }
+            for(Inmueble i : listado){
+                    if(c == i.getCodigo()){
+                        enableCampos();
+                        JT_Codigo.setText(i.getCodigo()+"");
+                        JT_Tipo.setText(i.getTipo());
+                        JT_Superficie.setText(i.getSuperficie()+"");
+                        JT_Direccion.setText(i.getDireccion());
+                        JT_Altura.setText(i.getAltura()+"");
+                        JT_Precio.setText(i.getPrecio()+"");
+                        
+                        ///USO METODOS PROPIETARIO
+                        PropietarioData pd = new PropietarioData();
+                        Propietario p = pd.buscarPropietarioPorID(i.getPropietario().getIdPropietario());
+                        
+                        
+                        ///USO EL MODELO DE COMBOBOX COMPARANDO EL LISTADO
+                        int x = modelito.getIndexOf(p.getApellido()+" "+p.getNombre()+" - "+p.getCuit());
+                        ///SELECCIONO LA COINCIDENCIA
+                        JC_ListaPropietarios.setSelectedIndex(x);
+                        
+                        JB_Eliminar.setEnabled(true);
+                        JB_Guardar.setText("Modificar");
+                        JB_Guardar.setEnabled(true);
+                        encontrado = true;
+                    }
+            }
+            if(!encontrado){
+                JOptionPane.showMessageDialog(this, "El Inmueble con ese codigo no existe");
+                JB_Eliminar.setEnabled(false);
+                limpiarCampos();
+            }
+        }     
     }//GEN-LAST:event_JB_BuscarActionPerformed
+
+    private void JB_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_EliminarActionPerformed
+        InmuebleData id = new InmuebleData();
+        Inmueble aEliminar = id.buscarInmuebleConCodigo(Integer.parseInt(JT_Codigo.getText().trim()));
+        id.deleteInmueble(aEliminar.getIdInmueble());
+
+        limpiarCampos();
+    }//GEN-LAST:event_JB_EliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -266,6 +302,8 @@ private void limpiarCampos (){
     JT_Precio.setText("");
     JT_Superficie.setText("");
     JT_Tipo.setText("");
+    JB_Guardar.setText("Guardar");
+    JB_Guardar.setEnabled(false);
     JB_Eliminar.setEnabled(false); 
 }
 
@@ -291,7 +329,6 @@ private List cargarListaPropietarios(){
 }
 
 
-
 private Inmueble aGuardar(Inmueble i){
     
     i.setCodigo(Integer.parseInt(JT_Codigo.getText().trim()));
@@ -302,7 +339,7 @@ private Inmueble aGuardar(Inmueble i){
     i.setTipo(JT_Tipo.getText());
     /// TODOS MENOS:
     /// ID SE GENERA SOLO
-    /// AL CREAR ES SIEMPRE DISPONIBLE - ESTADO = 0
+    /// AL CREAR ES SIEMPRE DESOCUPADO - ESTADO = 1
     /// PROPIETARIO AL SER COMBOBOX LO LLAMO DE OTRA MANERA
     
     int indiceSeleccion = JC_ListaPropietarios.getSelectedIndex();///INDICE EN LA LISTA
@@ -318,6 +355,12 @@ private Inmueble aGuardar(Inmueble i){
 }
 
 
-
+///DEPRECADO
+//private void autoSelectCombo(Propietario p){
+//    
+//    //JC_ListaPropietarios.removeAllItems();
+//    ///JC_ListaPropietarios.addItem(p.getApellido()+" "+p.getNombre()+" - "+p.getCuit());
+//    ///JC_ListaPropietarios.setSelectedIndex(0);
+//}
 
 }

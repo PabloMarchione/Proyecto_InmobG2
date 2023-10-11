@@ -322,7 +322,37 @@ public class InmuebleData {
     }
     
     
-    
+    /////////////////////////////// TRAE A TODOS! LOS INMUEBLES DESOCUPADOS ESTADO TRUE-1 ---OK
+    public List<Inmueble> listarInmueblesDescopudados() {
+        
+        List<Inmueble> inmuebles = new ArrayList<>();
+        try{
+            String sql = "SELECT * FROM inmueble WHERE estado =1 ";///CON EL ORDER BY SE PUEDEN ORDENAR PARA MOSTRAR EN LA VISTA MEJOR
+            PreparedStatement ps = con.prepareStatement(sql); //pide el try por el close, al pedo
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Inmueble inmueble = new Inmueble();
+                inmueble.setIdInmueble(rs.getInt("idInmueble"));
+                inmueble.setCodigo(rs.getInt("codigo"));
+                inmueble.setDireccion(rs.getString("direccion"));
+                inmueble.setAltura(rs.getInt("altura"));
+                inmueble.setTipo(rs.getString("tipo"));
+                inmueble.setSuperficie(rs.getInt("superficie"));
+                inmueble.setPrecio(rs.getInt("precio"));
+                inmueble.setEstado(rs.getBoolean("estado"));
+                
+                PropietarioData pd = new PropietarioData();
+                int idp = rs.getInt("idpropietario");
+                Propietario p = pd.buscarPropietarioPorID(idp);
+                inmueble.setPropietario(p);
+                inmuebles.add(inmueble);
+            }
+            ps.close();
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inmueble "+ex.getMessage());
+        }
+        return inmuebles;
+    }
     
     
     
