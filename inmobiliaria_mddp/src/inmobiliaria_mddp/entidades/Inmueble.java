@@ -111,6 +111,11 @@ public class Inmueble {
     public void setPropietario(Propietario propietario) {
         this.propietario = propietario;
     }
+
+    @Override
+    public String toString() {
+        return direccion + " " + altura + ", tipo: " + tipo + ", superficie: " + superficie + ", precio: " + precio;
+    }
     
     
     
