@@ -354,6 +354,16 @@ public class InmuebleData {
         return inmuebles;
     }
     
+    /////////////////////////////// TRAE A TODOS! LOS INMUEBLES DESOCUPADOS Y SU DUEÑO
+    /*"SELECT inmueble.Codigo, inmueble.Direccion, propietario.Apellido, propietario.Nombre, propietario.Cuit "
+                    + "FROM inmueble INNER JOIN propietario ON "
+                    + "inmueble.idPropietario = propietario.idPropietario "
+                    + "WHERE Estado=1 ORDER BY inmueble.Codigo";
+       */     
+    
+    
+    
+    
     
     
     
