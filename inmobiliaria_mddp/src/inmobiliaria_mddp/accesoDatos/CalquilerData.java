@@ -74,6 +74,12 @@ public class CalquilerData {
                 InquilinoData inquiData = new InquilinoData();
                 calqui.setInquilino(inquiData.buscarInquilinoConID(rs.getInt("idInquilino")));
             }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "No se enontró Contrato de Alquiler con id: " + id);
+            }
+            //cierro el objeto para liberar recursos
+            ps.close();
         } 
         catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo acceder a la tabla calquiler. " + ex.getMessage() );
