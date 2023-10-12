@@ -5,6 +5,8 @@
  */
 package inmobiliaria_mddp.vistas;
 
+import inmobiliaria_mddp.entidades.Inmueble;
+import inmobiliaria_mddp.entidades.Inquilino;
 /**
  *
  * @author marti
@@ -65,15 +67,11 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
 
         jL_inquilino.setText("Inquilino:");
 
-        jCB_inquilino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jTextField1.setText(" ");
 
         jL_garante.setText("Garante:");
 
         jL_inmueble.setText("Inmueble:");
-
-        jCB_inmueble.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jL_propietario.setText("Propietario:");
 
@@ -208,8 +206,8 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
     private javax.swing.JButton jB_eliminar;
     private javax.swing.JButton jB_guardar;
     private javax.swing.JButton jB_nuevo;
-    private javax.swing.JComboBox<String> jCB_inmueble;
-    private javax.swing.JComboBox<String> jCB_inquilino;
+    private javax.swing.JComboBox<Inmueble> jCB_inmueble;
+    private javax.swing.JComboBox<Inquilino> jCB_inquilino;
     private com.toedter.calendar.JDateChooser jDCH_fechaFin;
     private com.toedter.calendar.JDateChooser jDCH_fechaIni;
     private javax.swing.JLabel jL_codigo;

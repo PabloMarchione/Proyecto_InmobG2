@@ -33,7 +33,7 @@ public class CalquilerData {
     }
     */
     
-    private InquilinoDataMartin inquiData;
+    private InquilinoData inquiData;
     private InmuebleData inmuData;
     
     //constructor

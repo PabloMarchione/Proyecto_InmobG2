@@ -80,9 +80,19 @@ public class Menu extends javax.swing.JFrame {
         jM_Listar.setText("Listar");
 
         jMI_listaTodos.setText("Todos");
+        jMI_listaTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMI_listaTodosActionPerformed(evt);
+            }
+        });
         jM_Listar.add(jMI_listaTodos);
 
         jMI_listaXInmu.setText("Por Inmueble");
+        jMI_listaXInmu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMI_listaXInmuActionPerformed(evt);
+            }
+        });
         jM_Listar.add(jMI_listaXInmu);
 
         jM_calquiler.add(jM_Listar);
@@ -123,6 +133,24 @@ public class Menu extends javax.swing.JFrame {
         JD_Menu.add(ventanaCalquilers);
         JD_Menu.moveToFront(ventanaCalquilers);
     }//GEN-LAST:event_jMI_AlquiCrearEditarActionPerformed
+
+    private void jMI_listaTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_listaTodosActionPerformed
+        JD_Menu.removeAll();
+        JD_Menu.repaint();
+        GestionCalquiListaTodo ventanaCalquiListaTodo = new GestionCalquiListaTodo();
+        ventanaCalquiListaTodo.setVisible(true);
+        JD_Menu.add(ventanaCalquiListaTodo);
+        JD_Menu.moveToFront(ventanaCalquiListaTodo);
+    }//GEN-LAST:event_jMI_listaTodosActionPerformed
+
+    private void jMI_listaXInmuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_listaXInmuActionPerformed
+        JD_Menu.removeAll();
+        JD_Menu.repaint();
+        GestionCalquiListaInmu ventanaCalquiListaInmu = new GestionCalquiListaInmu();
+        ventanaCalquiListaInmu.setVisible(true);
+        JD_Menu.add(ventanaCalquiListaInmu);
+        JD_Menu.moveToFront(ventanaCalquiListaInmu);
+    }//GEN-LAST:event_jMI_listaXInmuActionPerformed
 
     /**
      * @param args the command line arguments
