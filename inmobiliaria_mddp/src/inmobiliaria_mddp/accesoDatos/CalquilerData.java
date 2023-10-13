@@ -100,8 +100,8 @@ public class CalquilerData {
             ps.setDate(2, Date.valueOf(calqui.getFechaFin()));
             ps.setInt(3, calqui.getPrecioAlquiler());
             ps.setInt(4, calqui.getEstado());
-            ps.setInt(5, calqui.getInmueble().getIdInmueble()); //reemplazar por entidad de Pablo, que a su vez tiene la entidad Propietario de Diana
-            ps.setInt(6, calqui.getInquilino().getId_inquilino()); //reemplazar por entidad de Diego 
+            ps.setInt(5, calqui.getInmueble().getIdInmueble()); 
+            ps.setInt(6, calqui.getInquilino().getId_inquilino());
             
             ps.executeUpdate();
             
@@ -119,6 +119,39 @@ public class CalquilerData {
                 //debo modificar el estado de la propiedad a ocupado, o sea estado = 0
                 InmuebleData inmuData = new InmuebleData();
                 inmuData.estadoInmuebleOcupado(calqui.getInmueble().getIdInmueble()); 
+            }
+            //cierro el objeto para liberar recursos
+            ps.close();
+        } 
+        catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo acceder a la tabla calquiler. " + ex.getMessage() );
+        }
+    }
+    
+    public void modificarContrato(Calquiler calqui)
+    {
+        String sql = "UPDATE calquiler SET fechaIni = ?, fechaFin = ?, PrecioAlquiler = ?, Estado = ?, idInmueble = ?, idInquilino =? WHERE idContrato = ?";
+        
+        try 
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            ps.setDate(1, Date.valueOf(calqui.getFechaIni()));
+            ps.setDate(2, Date.valueOf(calqui.getFechaFin()));
+            ps.setInt(3, calqui.getPrecioAlquiler());
+            ps.setInt(4, calqui.getEstado());
+            ps.setInt(5, calqui.getInmueble().getIdInmueble()); 
+            ps.setInt(6, calqui.getInquilino().getId_inquilino());
+            
+            ps.setInt(7, calqui.getIdContrato());
+            
+            ps.executeUpdate();
+            
+            int fila=ps.executeUpdate();
+            
+            if (fila == 1)
+            {
+                JOptionPane.showMessageDialog(null, "El contrato de alquiler se ha modificado exitosamente.");
             }
             //cierro el objeto para liberar recursos
             ps.close();
