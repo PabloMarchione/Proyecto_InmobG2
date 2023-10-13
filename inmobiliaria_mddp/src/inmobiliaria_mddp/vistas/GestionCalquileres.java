@@ -14,6 +14,7 @@ import inmobiliaria_mddp.entidades.Inquilino;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 /**
  *
@@ -251,9 +252,36 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
             {
                 //¿deshabilito "guardar" para evitar duplicados?
                 //cargo datos en formulario
+                //the Inmueble object to set as the selected item must be the same instance as one of the items in the combo box. If the calqui.getInmueble() object is not already in the combo box's list of items, the setSelectedItem method won't work.
+                //To set the selected item, search for the Inmueble object in the combo box's model and then set it as the selected item
                 jCB_inquilino.setSelectedItem(calqui.getInquilino());
+                DefaultComboBoxModel<Inquilino> modeloComboInqui = (DefaultComboBoxModel<Inquilino>) jCB_inquilino.getModel();
+                int totalInquis = modeloComboInqui.getSize();
+                for (int i = 0; i < totalInquis; i++)
+                {
+                    Inquilino aux = modeloComboInqui.getElementAt(i);
+                    if (aux.getId_inquilino()==calqui.getInquilino().getId_inquilino())
+                    {
+                        jCB_inquilino.setSelectedItem(aux);
+                        break;
+                    }
+                }
                 jTF_garante.setText(calqui.getInquilino().getNomCompletoGa());
-                jCB_inmueble.setSelectedItem(calqui.getInmueble());
+                //the Inmueble object to set as the selected item must be the same instance as one of the items in the combo box. If the calqui.getInmueble() object is not already in the combo box's list of items, the setSelectedItem method won't work.
+                //To set the selected item, search for the Inmueble object in the combo box's model and then set it as the selected item
+                DefaultComboBoxModel<Inmueble> modeloComboInmu = (DefaultComboBoxModel<Inmueble>) jCB_inmueble.getModel();
+                int totalInmus = modeloComboInmu.getSize();
+                //recorremos el modelo para encontrar la instancia
+                for (int i=0; i < totalInmus; i++)
+                {
+                    Inmueble aux = modeloComboInmu.getElementAt(i);
+                    //cuando coincide el codigo unico, significa que encontramos match y salimos
+                    if(aux.getCodigo() == calqui.getInmueble().getCodigo())
+                    {
+                        jCB_inmueble.setSelectedItem(aux);
+                        break;
+                    }
+                }
                 jTF_propietario.setText(calqui.getInmueble().getPropietario().getApellido());
                 //localDate : estu.getFechaNac()
                 //transforma localDate a instant: atStartOfDay(ZoneId.systemDefault()).toInstant()
