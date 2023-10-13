@@ -62,6 +62,9 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
         jB_guardar = new javax.swing.JButton();
         jB_eliminar = new javax.swing.JButton();
         jB_salir = new javax.swing.JButton();
+        jRB_Vigente = new javax.swing.JRadioButton();
+        jRB_Renovado = new javax.swing.JRadioButton();
+        jRB_NoVigente = new javax.swing.JRadioButton();
 
         jL_tituloCalquis.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jL_tituloCalquis.setText("CONTROL DE CONTRATOS");
@@ -116,6 +119,27 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
             }
         });
 
+        jRB_Vigente.setText("Vigente");
+        jRB_Vigente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRB_VigenteActionPerformed(evt);
+            }
+        });
+
+        jRB_Renovado.setText("Renovado");
+        jRB_Renovado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRB_RenovadoActionPerformed(evt);
+            }
+        });
+
+        jRB_NoVigente.setText("No vigente");
+        jRB_NoVigente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRB_NoVigenteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,37 +165,45 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jL_propietario)
-                                    .addComponent(jL_inmueble))
+                                    .addComponent(jL_inmueble)
+                                    .addComponent(jB_nuevo)
+                                    .addComponent(jL_monto))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jCB_inmueble, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jTF_propietario)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jDCH_fechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jDCH_fechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTF_monto))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jB_guardar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jB_eliminar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jB_salir))))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jL_fechaIni))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jL_fechaFin))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jL_monto))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jB_nuevo))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(65, 65, 65)
-                            .addComponent(jL_tituloCalquis, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jB_salir)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jRB_Vigente)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jDCH_fechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jDCH_fechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jTF_monto)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jRB_Renovado)
+                                        .addGap(33, 33, 33))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jL_fechaIni))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jL_fechaFin))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(jL_tituloCalquis, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jRB_NoVigente)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(102, 102, 102))
         );
         layout.setVerticalGroup(
@@ -208,11 +240,17 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jL_fechaFin)
                     .addComponent(jDCH_fechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jL_monto)
-                    .addComponent(jTF_monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                    .addComponent(jTF_monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jL_monto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jRB_Vigente)
+                        .addComponent(jRB_Renovado))
+                    .addComponent(jRB_NoVigente))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jB_nuevo)
                     .addComponent(jB_guardar)
@@ -289,6 +327,25 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
                 jDCH_fechaIni.setDate(Date.from(calqui.getFechaIni().atStartOfDay(ZoneId.systemDefault()).toInstant()));
                 jDCH_fechaFin.setDate(Date.from(calqui.getFechaFin().atStartOfDay(ZoneId.systemDefault()).toInstant()));
                 jTF_monto.setText("" + calqui.getPrecioAlquiler()); //una manera de convertir int a string, sumarle una cadena vacía
+                //activo radio buttons de acuerdo a estado. 0 es no vigente, 1 es vigente y 2 es renovado
+                if (calqui.getEstado()==0)
+                {
+                    jRB_NoVigente.setSelected(true);
+                    jRB_Vigente.setSelected(false);
+                    jRB_Renovado.setSelected(false);
+                }
+                else if (calqui.getEstado()==1)
+                {
+                    jRB_NoVigente.setSelected(false);
+                    jRB_Vigente.setSelected(true);
+                    jRB_Renovado.setSelected(false);
+                }
+                else if (calqui.getEstado()==2)
+                {
+                    jRB_NoVigente.setSelected(false);
+                    jRB_Vigente.setSelected(false);
+                    jRB_Renovado.setSelected(true);
+                }
                 //debería apagar boton para guardar, porque ese alumno ya existe, pero sino, no puedo acceder a "modificar" desde ese mismo boton
                 //jBguardar.setEnabled(false);
                 //¿agregar botón de "editar" para modificar datos????
@@ -311,6 +368,24 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
             this.dispose();
         }
     }//GEN-LAST:event_jB_salirActionPerformed
+
+    private void jRB_NoVigenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_NoVigenteActionPerformed
+        jRB_NoVigente.setSelected(true);
+        jRB_Vigente.setSelected(false);
+        jRB_Renovado.setSelected(false);
+    }//GEN-LAST:event_jRB_NoVigenteActionPerformed
+
+    private void jRB_VigenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_VigenteActionPerformed
+        jRB_NoVigente.setSelected(false);
+        jRB_Vigente.setSelected(true);
+        jRB_Renovado.setSelected(false);
+    }//GEN-LAST:event_jRB_VigenteActionPerformed
+
+    private void jRB_RenovadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_RenovadoActionPerformed
+        jRB_NoVigente.setSelected(false);
+        jRB_Vigente.setSelected(false);
+        jRB_Renovado.setSelected(true);
+    }//GEN-LAST:event_jRB_RenovadoActionPerformed
 
     private void cargarComboInqui()
     {
@@ -354,6 +429,9 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jL_monto;
     private javax.swing.JLabel jL_propietario;
     private javax.swing.JLabel jL_tituloCalquis;
+    private javax.swing.JRadioButton jRB_NoVigente;
+    private javax.swing.JRadioButton jRB_Renovado;
+    private javax.swing.JRadioButton jRB_Vigente;
     private javax.swing.JTextField jTF_codigo_ID;
     private javax.swing.JTextField jTF_garante;
     private javax.swing.JTextField jTF_monto;
