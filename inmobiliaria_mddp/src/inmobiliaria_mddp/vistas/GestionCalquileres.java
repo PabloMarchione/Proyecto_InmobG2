@@ -253,7 +253,7 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
                 //¿deshabilito "guardar" para evitar duplicados?
                 //cargo datos en formulario
                 //the Inmueble object to set as the selected item must be the same instance as one of the items in the combo box. If the calqui.getInmueble() object is not already in the combo box's list of items, the setSelectedItem method won't work.
-                //To set the selected item, search for the Inmueble object in the combo box's model and then set it as the selected item
+                //To set the selected item, search for the Inmueble object in the combo box's model and then set it as the selected itemgit agi
                 jCB_inquilino.setSelectedItem(calqui.getInquilino());
                 DefaultComboBoxModel<Inquilino> modeloComboInqui = (DefaultComboBoxModel<Inquilino>) jCB_inquilino.getModel();
                 int totalInquis = modeloComboInqui.getSize();
@@ -316,7 +316,11 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
     {
         //instanciar un InquilinoData para acceder a sus métodos
         InquilinoData inquiData = new InquilinoData();
-        //List<Inquilino> inquiList = inquiData.//nombre del metodo que devuelve lista de todos los inquilinos
+        List<Inquilino> inquiList = inquiData.listarInquilinos();
+        for (Inquilino aux : inquiList)
+        {
+            jCB_inquilino.addItem(aux);
+        }
     }
     
     private void cargarComboInmu()

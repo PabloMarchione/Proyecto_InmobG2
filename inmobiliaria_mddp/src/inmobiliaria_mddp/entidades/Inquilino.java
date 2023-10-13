@@ -95,6 +95,11 @@ public class Inquilino {
     public void setCuitGarante(int CuitGarante) {
         this.CuitGarante = CuitGarante;
     }
+
+    @Override
+    public String toString() {
+        return NomCom + " (id: " + id_inquilino + ")" ;
+    }
     
 
 

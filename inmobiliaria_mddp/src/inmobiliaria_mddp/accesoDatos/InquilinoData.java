@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -168,5 +170,32 @@ public class InquilinoData {
         
         
         
+    }
+    
+    /////////////////////////////// TRAE A TODOS LOS INQUILINOS
+    public List<Inquilino> listarInquilinos() {
+        
+        List<Inquilino> inquilinos = new ArrayList<>();
+        try{
+            String sql = "SELECT * FROM inquilino";///CON EL ORDER BY SE PUEDEN ORDENAR PARA MOSTRAR EN LA VISTA MEJOR
+            PreparedStatement ps = con.prepareStatement(sql); 
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Inquilino inquilino = new Inquilino();
+                inquilino.setId_inquilino(rs.getInt("IdInquilino"));
+                inquilino.setNomCom(rs.getString("NomCom"));
+                inquilino.setCuitIn(rs.getInt("CuitIn"));
+                inquilino.setTelContacto(rs.getInt("TelContacto"));
+                inquilino.setLugarDeTra(rs.getString("LugarDeTra"));
+                inquilino.setNomCompletoGa(rs.getString("NomCompletoGa"));
+                inquilino.setCuitGarante(rs.getInt("CuitGarante"));
+                
+                inquilinos.add(inquilino);
+            }
+            ps.close();
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inmueble "+ex.getMessage());
+        }
+        return inquilinos;
     }
 }
