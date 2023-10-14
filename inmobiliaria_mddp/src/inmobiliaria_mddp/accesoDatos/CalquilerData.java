@@ -45,7 +45,7 @@ public class CalquilerData {
     
     //métodos públicos
     
-    public Calquiler buscarContrato(int id)
+    public Calquiler buscarContrato(int id, boolean conCartel)
     {
         Calquiler calqui = null;
         
@@ -76,7 +76,10 @@ public class CalquilerData {
             }
             else
             {
-                JOptionPane.showMessageDialog(null, "No se enontró Contrato de Alquiler con id: " + id);
+                if (conCartel)
+                {
+                    JOptionPane.showMessageDialog(null, "No se enontró Contrato de Alquiler con id: " + id);
+                }
             }
             //cierro el objeto para liberar recursos
             ps.close();
@@ -182,7 +185,7 @@ public class CalquilerData {
                 //llamar al metodo buscar contrato Con ID
                 Calquiler calqui = new Calquiler();
                 CalquilerData calquiData = new CalquilerData();
-                calqui = calquiData.buscarContrato(idContrato);
+                calqui = calquiData.buscarContrato(idContrato, false);
                 //modificar estado de inmueble a disponible
                 inmuData.estadoInmuebleDesocupado(calqui.getInmueble().getIdInmueble()); 
             }

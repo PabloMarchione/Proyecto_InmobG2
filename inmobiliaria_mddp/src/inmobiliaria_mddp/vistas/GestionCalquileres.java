@@ -11,7 +11,10 @@ import inmobiliaria_mddp.accesoDatos.InquilinoData;
 import inmobiliaria_mddp.entidades.Calquiler;
 import inmobiliaria_mddp.entidades.Inmueble;
 import inmobiliaria_mddp.entidades.Inquilino;
+import inmobiliaria_mddp.entidades.Propietario;
+import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -87,12 +90,24 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
 
         jL_inquilino.setText("Inquilino:");
 
+        jCB_inquilino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCB_inquilinoActionPerformed(evt);
+            }
+        });
+
         jTF_garante.setEditable(false);
         jTF_garante.setText(" ");
 
         jL_garante.setText("Garante:");
 
         jL_inmueble.setText("Inmueble:");
+
+        jCB_inmueble.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCB_inmuebleActionPerformed(evt);
+            }
+        });
 
         jL_propietario.setText("Propietario:");
 
@@ -107,10 +122,25 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
         jTF_monto.setText(" ");
 
         jB_nuevo.setText("Nuevo");
+        jB_nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_nuevoActionPerformed(evt);
+            }
+        });
 
         jB_guardar.setText("Guardar");
+        jB_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_guardarActionPerformed(evt);
+            }
+        });
 
         jB_eliminar.setText("Eliminar");
+        jB_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_eliminarActionPerformed(evt);
+            }
+        });
 
         jB_salir.setText("Salir");
         jB_salir.addActionListener(new java.awt.event.ActionListener() {
@@ -190,20 +220,17 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
                                         .addComponent(jRB_Renovado)
                                         .addGap(33, 33, 33))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jL_fechaIni))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jL_fechaFin))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addComponent(jL_tituloCalquis, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jRB_NoVigente)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addComponent(jL_fechaIni))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jL_fechaFin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jL_tituloCalquis, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jRB_NoVigente)))
                 .addGap(102, 102, 102))
         );
         layout.setVerticalGroup(
@@ -278,7 +305,7 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
             CalquilerData calquiData = new CalquilerData();
             //instancio un contrato para recibir datos
             Calquiler calqui = new Calquiler();
-            calqui = calquiData.buscarContrato(id);
+            calqui = calquiData.buscarContrato(id, true);
             //si me devuelve null, no existe ese contrato
             if (calqui == null)
             {
@@ -346,7 +373,7 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
                     jRB_Vigente.setSelected(false);
                     jRB_Renovado.setSelected(true);
                 }
-                //debería apagar boton para guardar, porque ese alumno ya existe, pero sino, no puedo acceder a "modificar" desde ese mismo boton
+                //debería apagar boton para guardar, porque ese contrato ya existe, pero sino, no puedo acceder a "modificar" desde ese mismo boton
                 //jBguardar.setEnabled(false);
                 //¿agregar botón de "editar" para modificar datos????
             }
@@ -387,6 +414,157 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
         jRB_Renovado.setSelected(true);
     }//GEN-LAST:event_jRB_RenovadoActionPerformed
 
+    private void jB_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_guardarActionPerformed
+        //capturar todos los campos 
+        //buscar contrato
+        //si el contrato existe, modifiarlo a traves del metodo modificar
+        //si el contrato NO existe, generar un contrato con el constructor SIN id
+        //PROBLEMA: ¿debería modificar la base de datos para agregar "codigo", de modo que Id pueda ser autoincremental?
+        //como está hecho actualmente, sí o sí debo ingresar manualmente un código / id
+        try
+        {
+            //debo separar si el contrato es nuevo para guardar, o existente para editar
+            //busco contrato por codigo_id
+            //si devuelve null, es nuevo
+            //caso contrario, es para editar
+            int id = Integer.parseInt(jTF_codigo_ID.getText());
+            //instancio un CalquilerData para acceder a sus metodos
+            CalquilerData calquiData = new CalquilerData();
+            Calquiler calquiAux = calquiData.buscarContrato(id, false); //para que no muestre cartel de busqueda
+            if (calquiAux != null)
+            {
+                //metodo modificar. comparo el contrato en base de datos que viene por codigo_id contra los campos del formulario
+                int calquID = calquiAux.getIdContrato();
+                //genero los parámetros para pasar al metodo modificarContrato
+                //inquilino
+                Inquilino inquil = (Inquilino) jCB_inquilino.getSelectedItem();
+                //inmueble
+                Inmueble inmue = (Inmueble) jCB_inmueble.getSelectedItem();
+                //fecha_Ini
+                LocalDate fechaInic = jDCH_fechaIni.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                //fecha_Fin
+                LocalDate fechaFini = jDCH_fechaFin.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                //monto, x ej: int estuDNI = Integer.parseInt(jTFdni.getText());
+                int monto = Integer.parseInt(jTF_monto.getText());
+                //estado
+                int estado = 0;
+                if (jRB_Vigente.isSelected())
+                {
+                    estado = 1;
+                }
+                else if (jRB_Renovado.isSelected())
+                {
+                    estado = 2;
+                }
+                //una vez que tengo todos los datos capturados, genero un Contrato a modificar, con constructor completo
+                Calquiler calquiPosta = new Calquiler(calquID, fechaInic, fechaFini, monto, estado, inmue, inquil);
+                // la forma correcta sería con Override equals() y hashCode() , despues -> if (calquiAux.equals(calquiPosta))
+                if (calquiAux.getFechaIni()==calquiPosta.getFechaIni() && calquiAux.getFechaFin()==calquiPosta.getFechaFin() && calquiAux.getPrecioAlquiler()==calquiPosta.getPrecioAlquiler() && calquiAux.getEstado()==calquiPosta.getEstado() && calquiAux.getInquilino().getId_inquilino() == calquiPosta.getInquilino().getId_inquilino() && calquiAux.getInmueble().getIdInmueble()==calquiPosta.getInmueble().getIdInmueble())
+                {
+                    JOptionPane.showMessageDialog(this, "No se han producido cambios");
+                    return;
+                }
+                calquiData.modificarContrato(calquiPosta);
+            }
+            else
+            {
+                try
+                {
+                    if (jDCH_fechaIni == null)
+                    {
+                        JOptionPane.showMessageDialog(this, "Ingrese una fecha inicial");
+                        return;
+                    }
+                    if (jDCH_fechaFin == null)
+                    {
+                        JOptionPane.showMessageDialog(this, "Ingrese una fecha de fin");
+                        return;
+                    }
+                    if (jDCH_fechaFin.getDate() == jDCH_fechaIni.getDate() || jDCH_fechaFin.getDate().before(jDCH_fechaIni.getDate()))
+                    {
+                        JOptionPane.showMessageDialog(this, "Fecha final debe ser posterior a la fecha inicial");
+                        return;
+                    }
+                    LocalDate fechaIni = jDCH_fechaIni.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    LocalDate fechaFin = jDCH_fechaFin.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    int monto = Integer.parseInt(jTF_monto.getText());
+                    int estado = 0;
+                    if (jRB_Vigente.isSelected())
+                    {
+                        estado = 1;
+                    }
+                    else if (jRB_Renovado.isSelected())
+                    {
+                        estado = 2;
+                    }
+                    Inmueble inmu = (Inmueble)jCB_inmueble.getSelectedItem();
+                    Inquilino inqui = (Inquilino) jCB_inquilino.getSelectedItem();
+                    
+                    //instancio contrato a partir de datos
+                    Calquiler calqui = new Calquiler(fechaIni, fechaFin, monto, estado, inmu, inqui);
+                    calquiData.generarContrato(calqui);
+                }
+                catch(NumberFormatException nfe)
+                {
+                    JOptionPane.showMessageDialog(this, "Ingrese un monto valido");
+                }
+            }
+            limpiarCampos();
+        }
+        //An empty TextField, or doubles or floats would result in a NumberFormatException
+        catch(NumberFormatException nfe)
+        {
+            JOptionPane.showMessageDialog(this, "Ingrese un dato valido");
+            return;
+        } 
+    }//GEN-LAST:event_jB_guardarActionPerformed
+
+    private void jB_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_nuevoActionPerformed
+        limpiarCampos();
+    }//GEN-LAST:event_jB_nuevoActionPerformed
+
+    private void jCB_inmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCB_inmuebleActionPerformed
+        //capturar inmueble seleccionado y mostrar propietario
+        Inmueble inmu = (Inmueble) jCB_inmueble.getSelectedItem();
+        Propietario propi = inmu.getPropietario();
+        jTF_propietario.setText(propi.getApellido());
+    }//GEN-LAST:event_jCB_inmuebleActionPerformed
+
+    private void jCB_inquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCB_inquilinoActionPerformed
+        Inquilino inqui = (Inquilino) jCB_inquilino.getSelectedItem();
+        jTF_garante.setText(inqui.getNomCompletoGa());
+    }//GEN-LAST:event_jCB_inquilinoActionPerformed
+
+    private void jB_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_eliminarActionPerformed
+        // traer id contrato
+        //llamar al método anularContrato(idContrato)
+        try
+        {
+            int id = Integer.parseInt(jTF_codigo_ID.getText());
+            CalquilerData calquiData = new CalquilerData();
+            Calquiler calqui = new Calquiler();
+            calqui = calquiData.buscarContrato(id, true);
+            if (calqui == null)
+            {
+                //borramos el codigo ingresado y nos vamos
+                jTF_codigo_ID.setText("");
+                return;
+            }
+            else
+            {
+                calquiData.anularContrato(id); // este es el borrado lógico. Para eliminar físicamente, usar: destruirContrato()
+                limpiarCampos();
+            }
+        }
+        //An empty TextField, or doubles or floats would result in a NumberFormatException
+        catch(NumberFormatException nfe)
+        {
+            JOptionPane.showMessageDialog(this, "Ingrese un número valido");
+            jTF_codigo_ID.setText("");
+            return;
+        }
+    }//GEN-LAST:event_jB_eliminarActionPerformed
+
     private void cargarComboInqui()
     {
         //instanciar un InquilinoData para acceder a sus métodos
@@ -408,6 +586,21 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
         {
             jCB_inmueble.addItem(aux);
         }
+    }
+    
+    private void limpiarCampos()
+    {
+        jTF_codigo_ID.setText("");
+        jCB_inquilino.setSelectedIndex(0);//cargo el primero de la lista
+        jTF_garante.setText("");
+        jCB_inmueble.setSelectedIndex(0);//cargo el primero de la lista
+        jTF_propietario.setText("");
+        jDCH_fechaIni.setDate(null);
+        jDCH_fechaFin.setDate(null);
+        jTF_monto.setText("");
+        jRB_NoVigente.setSelected(false);
+        jRB_Vigente.setSelected(false);
+        jRB_Renovado.setSelected(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
