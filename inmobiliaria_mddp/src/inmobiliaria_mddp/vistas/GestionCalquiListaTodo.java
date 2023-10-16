@@ -5,17 +5,26 @@
  */
 package inmobiliaria_mddp.vistas;
 
+import inmobiliaria_mddp.accesoDatos.CalquilerData;
+import inmobiliaria_mddp.entidades.Calquiler;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author marti
  */
 public class GestionCalquiListaTodo extends javax.swing.JInternalFrame {
 
+    private DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form GestionCalquiListaTodo
      */
     public GestionCalquiListaTodo() {
         initComponents();
+        armarCabecera();
+        cargarDatos();
     }
 
     /**
@@ -30,11 +39,11 @@ public class GestionCalquiListaTodo extends javax.swing.JInternalFrame {
         jL_listaCompleta = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jT_tablaListaComp = new javax.swing.JTable();
-        jB_editar = new javax.swing.JButton();
+        jB_imprimir = new javax.swing.JButton();
         jB_salir = new javax.swing.JButton();
 
         jL_listaCompleta.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jL_listaCompleta.setText("LISTA COMPLETA DE CONTRATOS DE ALQUILER");
+        jL_listaCompleta.setText("LISTA COMPLETA DE CONTRATOS DE ALQUILER VIGENTES");
 
         jT_tablaListaComp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -47,11 +56,22 @@ public class GestionCalquiListaTodo extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jT_tablaListaComp.setEnabled(false);
         jScrollPane1.setViewportView(jT_tablaListaComp);
 
-        jB_editar.setText("Editar");
+        jB_imprimir.setText("Imprimir");
+        jB_imprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_imprimirActionPerformed(evt);
+            }
+        });
 
         jB_salir.setText("Salir");
+        jB_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_salirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,12 +83,12 @@ public class GestionCalquiListaTodo extends javax.swing.JInternalFrame {
                     .addComponent(jL_listaCompleta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jB_editar)
+                                .addComponent(jB_imprimir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jB_salir)))
-                        .addGap(0, 21, Short.MAX_VALUE)))
+                                .addComponent(jB_salir))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 59, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -80,7 +100,7 @@ public class GestionCalquiListaTodo extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jB_editar)
+                    .addComponent(jB_imprimir)
                     .addComponent(jB_salir))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
@@ -88,12 +108,48 @@ public class GestionCalquiListaTodo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jB_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_salirActionPerformed
+        int choice = JOptionPane.showConfirmDialog(this, "¿Salir de esta ventana?", "Confirmación", JOptionPane.YES_NO_OPTION);
+        if (choice == JOptionPane.YES_OPTION) 
+        {
+            // con dispose salimos del internal frame. Para salir x completo: "System.exit(0);"
+            this.dispose();
+        }
+    }//GEN-LAST:event_jB_salirActionPerformed
+
+    private void jB_imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_imprimirActionPerformed
+        JOptionPane.showMessageDialog(this, "Simula menu de impresión");
+    }//GEN-LAST:event_jB_imprimirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jB_editar;
+    private javax.swing.JButton jB_imprimir;
     private javax.swing.JButton jB_salir;
     private javax.swing.JLabel jL_listaCompleta;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jT_tablaListaComp;
     // End of variables declaration//GEN-END:variables
+    
+    private void armarCabecera()
+    {
+        modelo.addColumn("ID");
+        modelo.addColumn("Inicio");
+        modelo.addColumn("Fin");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Inmueble (id)");
+        modelo.addColumn("Inquilino (id)");
+        
+        jT_tablaListaComp.setModel(modelo);
+    }
+    
+    private void cargarDatos()
+    {
+        CalquilerData calquiData = new CalquilerData();
+        List<Calquiler> calquis = calquiData.listarVigentes();
+        
+        for (Calquiler aux : calquis)
+        {
+            modelo.addRow(new Object[]{aux.getIdContrato(), aux.getFechaIni(), aux.getFechaFin(), aux.getPrecioAlquiler(), aux.getInmueble().getIdInmueble(), aux.getInquilino().getId_inquilino()});
+        }
+    }
 }

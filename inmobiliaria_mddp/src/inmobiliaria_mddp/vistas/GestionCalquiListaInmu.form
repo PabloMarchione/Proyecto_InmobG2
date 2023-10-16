@@ -32,7 +32,7 @@
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jB_editar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jB_imprimir" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jB_salir" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -60,7 +60,7 @@
               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jB_editar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jB_imprimir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jB_salir" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="67" max="32767" attributes="0"/>
@@ -83,6 +83,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jCB_inmu">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCB_inmuActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Inmueble&gt;"/>
       </AuxValues>
@@ -104,19 +107,26 @@
                 <Column editable="true" title="Title 4" type="java.lang.Object"/>
               </Table>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jB_editar">
+    <Component class="javax.swing.JButton" name="jB_imprimir">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Editar"/>
+        <Property name="text" type="java.lang.String" value="Imprimir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB_imprimirActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jB_salir">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB_salirActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
