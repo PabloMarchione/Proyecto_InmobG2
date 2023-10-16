@@ -63,7 +63,7 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
         jTF_monto = new javax.swing.JTextField();
         jB_nuevo = new javax.swing.JButton();
         jB_guardar = new javax.swing.JButton();
-        jB_eliminar = new javax.swing.JButton();
+        jB_anular = new javax.swing.JButton();
         jB_salir = new javax.swing.JButton();
         jRB_Vigente = new javax.swing.JRadioButton();
         jRB_Renovado = new javax.swing.JRadioButton();
@@ -135,10 +135,10 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
             }
         });
 
-        jB_eliminar.setText("Eliminar");
-        jB_eliminar.addActionListener(new java.awt.event.ActionListener() {
+        jB_anular.setText("Anular");
+        jB_anular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB_eliminarActionPerformed(evt);
+                jB_anularActionPerformed(evt);
             }
         });
 
@@ -205,7 +205,7 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jB_guardar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jB_eliminar)
+                                        .addComponent(jB_anular)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jB_salir)
                                         .addGap(0, 0, Short.MAX_VALUE))
@@ -281,7 +281,7 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jB_nuevo)
                     .addComponent(jB_guardar)
-                    .addComponent(jB_eliminar)
+                    .addComponent(jB_anular)
                     .addComponent(jB_salir))
                 .addContainerGap())
         );
@@ -426,14 +426,14 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
             //debo separar si el contrato es nuevo para guardar, o existente para editar
             //busco contrato por codigo_id
             //si devuelve null, es nuevo
-            //caso contrario, es para editar
+            //caso contrario, es para MODIFICAR
             int id = Integer.parseInt(jTF_codigo_ID.getText());
             //instancio un CalquilerData para acceder a sus metodos
             CalquilerData calquiData = new CalquilerData();
             Calquiler calquiAux = calquiData.buscarContrato(id, false); //para que no muestre cartel de busqueda
             if (calquiAux != null)
             {
-                //metodo modificar. comparo el contrato en base de datos que viene por codigo_id contra los campos del formulario
+                //metodo MODIFICAR. comparo el contrato en base de datos que viene por codigo_id contra los campos del formulario
                 int calquID = calquiAux.getIdContrato();
                 //genero los parámetros para pasar al metodo modificarContrato
                 //inquilino
@@ -468,6 +468,7 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
             }
             else
             {
+                //metodo GUARDAR CON ID
                 try
                 {
                     if (jDCH_fechaIni == null)
@@ -488,6 +489,11 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
                     LocalDate fechaIni = jDCH_fechaIni.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     LocalDate fechaFin = jDCH_fechaFin.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     int monto = Integer.parseInt(jTF_monto.getText());
+                    if(monto <= 0)
+                    {
+                        JOptionPane.showMessageDialog(this, "Ingrese un valor mayor a 0");
+                        return;
+                    }
                     int estado = 0;
                     if (jRB_Vigente.isSelected())
                     {
@@ -498,11 +504,16 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
                         estado = 2;
                     }
                     Inmueble inmu = (Inmueble)jCB_inmueble.getSelectedItem();
+                    if (!inmu.isEstado()) // ocupado es estado = 0 -false
+                    {
+                        JOptionPane.showMessageDialog(this, "El inmueble con ID: " + inmu.getIdInmueble() + " no está disponible");
+                        return;
+                    }
                     Inquilino inqui = (Inquilino) jCB_inquilino.getSelectedItem();
                     
                     //instancio contrato a partir de datos
-                    Calquiler calqui = new Calquiler(fechaIni, fechaFin, monto, estado, inmu, inqui);
-                    calquiData.generarContrato(calqui);
+                    Calquiler calqui = new Calquiler(id, fechaIni, fechaFin, monto, estado, inmu, inqui);
+                    calquiData.generarContratoConID(calqui);
                 }
                 catch(NumberFormatException nfe)
                 {
@@ -535,7 +546,8 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
         jTF_garante.setText(inqui.getNomCompletoGa());
     }//GEN-LAST:event_jCB_inquilinoActionPerformed
 
-    private void jB_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_eliminarActionPerformed
+    private void jB_anularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_anularActionPerformed
+        //este método hace un borrado lógico. Para el borrado físico, usar destruirContrato() desde main    
         // traer id contrato
         //llamar al método anularContrato(idContrato)
         try
@@ -544,6 +556,7 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
             CalquilerData calquiData = new CalquilerData();
             Calquiler calqui = new Calquiler();
             calqui = calquiData.buscarContrato(id, true);
+            //si no existe el contrato...
             if (calqui == null)
             {
                 //borramos el codigo ingresado y nos vamos
@@ -552,6 +565,13 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
             }
             else
             {
+                //chequear si ya está anulado
+                if(calqui.getEstado()==0)
+                {
+                    JOptionPane.showMessageDialog(this, "El contrato con ID: " + calqui.getIdContrato() + " ya está anulado");
+                    jTF_codigo_ID.setText("");
+                    return;
+                }
                 calquiData.anularContrato(id); // este es el borrado lógico. Para eliminar físicamente, usar: destruirContrato()
                 limpiarCampos();
             }
@@ -563,7 +583,7 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
             jTF_codigo_ID.setText("");
             return;
         }
-    }//GEN-LAST:event_jB_eliminarActionPerformed
+    }//GEN-LAST:event_jB_anularActionPerformed
 
     private void cargarComboInqui()
     {
@@ -604,8 +624,8 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jB_anular;
     private javax.swing.JButton jB_buscar;
-    private javax.swing.JButton jB_eliminar;
     private javax.swing.JButton jB_guardar;
     private javax.swing.JButton jB_nuevo;
     private javax.swing.JButton jB_salir;

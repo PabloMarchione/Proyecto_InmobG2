@@ -90,6 +90,41 @@ public class CalquilerData {
         return calqui;
     }
     
+    public void generarContratoConID(Calquiler calqui)
+    {
+        String sql = "INSERT INTO calquiler (idContrato, fechaIni, fechaFin, PrecioAlquiler, Estado, idInmueble, idInquilino) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        
+        try 
+        {
+            PreparedStatement ps = con.prepareStatement(sql); // no tengo que pedir generated keys x q estoy pasandole yo la clave primaria
+            
+            ps.setInt(1, calqui.getIdContrato());
+            ps.setDate(2, Date.valueOf(calqui.getFechaIni()));
+            ps.setDate(3, Date.valueOf(calqui.getFechaFin()));
+            ps.setInt(4, calqui.getPrecioAlquiler());
+            ps.setInt(5, calqui.getEstado());
+            ps.setInt(6, calqui.getInmueble().getIdInmueble()); 
+            ps.setInt(7, calqui.getInquilino().getId_inquilino());
+            
+            int fila=ps.executeUpdate();
+            
+            if (fila == 1)
+            {
+                JOptionPane.showMessageDialog(null, "Contrato creado existosamente");
+                JOptionPane.showMessageDialog(null, "El Propietario con ID: " + calqui.getInmueble().getPropietario().getIdPropietario() + " recibió un aviso al teléfono " + calqui.getInmueble().getPropietario().getTelefono());
+                
+                //debo modificar el estado de la propiedad a ocupado, o sea estado = 0
+                InmuebleData inmuData = new InmuebleData();
+                inmuData.estadoInmuebleOcupado(calqui.getInmueble().getIdInmueble()); 
+            }
+            //cierro el objeto para liberar recursos
+            ps.close();
+        } 
+        catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo acceder a la tabla calquiler. " + ex.getMessage() );
+        }
+    }
+    
     public void generarContrato(Calquiler calqui)
     {
         //debo insertar una fila en la tabla alquiler
@@ -148,7 +183,7 @@ public class CalquilerData {
             
             ps.setInt(7, calqui.getIdContrato());
             
-            ps.executeUpdate();
+            //ps.executeUpdate();
             
             int fila=ps.executeUpdate();
             
@@ -321,7 +356,7 @@ public class CalquilerData {
         return calquis;
     }
     
-    //USAR CON CUIDADO, borrado físico full
+    //CUIDADO, borrado físico full
     public void destruirContrato(int idContrato)
     {
         //modifico fila de tabla calquiler
