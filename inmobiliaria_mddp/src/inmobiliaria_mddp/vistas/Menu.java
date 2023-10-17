@@ -23,7 +23,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         JD_Menu = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jM_propietario = new javax.swing.JMenu();
         JM_Inmuebles = new javax.swing.JMenu();
         jMInquilino = new javax.swing.JMenu();
         jM_calquiler = new javax.swing.JMenu();
@@ -53,8 +53,8 @@ public class Menu extends javax.swing.JFrame {
             .addGap(0, 440, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        jM_propietario.setText("Propietarios");
+        jMenuBar1.add(jM_propietario);
 
         JM_Inmuebles.setText("Inmuebles");
         JM_Inmuebles.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -196,7 +196,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMInquilino;
     private javax.swing.JMenu jM_Listar;
     private javax.swing.JMenu jM_calquiler;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jM_propietario;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
