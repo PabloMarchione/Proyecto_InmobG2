@@ -53,7 +53,12 @@ public class Menu extends javax.swing.JFrame {
             .addGap(0, 440, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("File");
+        jMenu1.setText("Propietario");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         JM_Inmuebles.setText("Inmuebles");
@@ -151,6 +156,15 @@ public class Menu extends javax.swing.JFrame {
         JD_Menu.add(ventanaCalquiListaInmu);
         JD_Menu.moveToFront(ventanaCalquiListaInmu);
     }//GEN-LAST:event_jMI_listaXInmuActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+       JD_Menu.removeAll();
+        JD_Menu.repaint();
+        FormularioPropietarios ventanaProp = new FormularioPropietarios();
+        ventanaProp.setVisible(true);
+        JD_Menu.add(ventanaProp);
+        JD_Menu.moveToFront(ventanaProp);
+    }//GEN-LAST:event_jMenu1MouseClicked
 
     /**
      * @param args the command line arguments

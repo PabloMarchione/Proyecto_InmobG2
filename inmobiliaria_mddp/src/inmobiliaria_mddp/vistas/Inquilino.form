@@ -46,17 +46,15 @@
                           <Component id="jLabel1" min="-2" pref="234" max="-2" attributes="0"/>
                           <Component id="jT_idInquilino" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
                           <Component id="jT_nombCom" alignment="0" max="32767" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jT_Telefono" alignment="0" pref="83" max="32767" attributes="0"/>
-                              <Component id="jT_cuitInquilino" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jT_Telefono" alignment="0" pref="249" max="32767" attributes="0"/>
+                          <Component id="jT_cuitInquilino" alignment="0" max="32767" attributes="0"/>
                           <Component id="jT_LTrabajo" alignment="0" max="32767" attributes="0"/>
                           <Component id="jT_NombGarante" alignment="0" pref="249" max="32767" attributes="0"/>
                           <Component id="jT_cuitGarante" alignment="0" min="-2" pref="82" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="158" max="32767" attributes="0"/>
+              <EmptySpace pref="169" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
@@ -67,7 +65,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jB_Nuevo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="119" max="32767" attributes="0"/>
+                      <EmptySpace pref="130" max="32767" attributes="0"/>
                       <Component id="jB_Guardar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                       <Component id="jB_Eliminar" min="-2" max="-2" attributes="0"/>
@@ -117,7 +115,7 @@
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jT_cuitGarante" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="73" max="32767" attributes="0"/>
+              <EmptySpace pref="185" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jB_Nuevo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jB_Guardar" alignment="3" min="-2" max="-2" attributes="0"/>
