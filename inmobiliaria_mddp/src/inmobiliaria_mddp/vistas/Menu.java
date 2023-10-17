@@ -23,7 +23,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         JD_Menu = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jM_propietario = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
         JM_Inmuebles = new javax.swing.JMenu();
         jMInquilino = new javax.swing.JMenu();
         jM_calquiler = new javax.swing.JMenu();
@@ -53,8 +53,13 @@ public class Menu extends javax.swing.JFrame {
             .addGap(0, 440, Short.MAX_VALUE)
         );
 
-        jM_propietario.setText("Propietarios");
-        jMenuBar1.add(jM_propietario);
+        jMenu1.setText("Propietarios");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
 
         JM_Inmuebles.setText("Inmuebles");
         JM_Inmuebles.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -152,6 +157,15 @@ public class Menu extends javax.swing.JFrame {
         JD_Menu.moveToFront(ventanaCalquiListaInmu);
     }//GEN-LAST:event_jMI_listaXInmuActionPerformed
 
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+       JD_Menu.removeAll();
+        JD_Menu.repaint();
+        FormularioPropietarios ventanaProp = new FormularioPropietarios();
+        ventanaProp.setVisible(true);
+        JD_Menu.add(ventanaProp);
+        JD_Menu.moveToFront(ventanaProp);
+    }//GEN-LAST:event_jMenu1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -196,7 +210,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMInquilino;
     private javax.swing.JMenu jM_Listar;
     private javax.swing.JMenu jM_calquiler;
-    private javax.swing.JMenu jM_propietario;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
