@@ -32,6 +32,7 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
         initComponents();
         cargarComboInqui();
         cargarComboInmu();
+        limpiarCampos();
     }
 
     /**
@@ -444,7 +445,7 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
                 LocalDate fechaInic = jDCH_fechaIni.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 //fecha_Fin
                 LocalDate fechaFini = jDCH_fechaFin.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                //monto, x ej: int estuDNI = Integer.parseInt(jTFdni.getText());
+                //monto
                 int monto = Integer.parseInt(jTF_monto.getText());
                 //estado
                 int estado = 0;
@@ -518,6 +519,7 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
                 catch(NumberFormatException nfe)
                 {
                     JOptionPane.showMessageDialog(this, "Ingrese un monto valido");
+                    return;
                 }
             }
             limpiarCampos();
