@@ -354,13 +354,107 @@ public class InmuebleData {
         return inmuebles;
     }
     
-    /////////////////////////////// TRAE A TODOS! LOS INMUEBLES DESOCUPADOS Y SU DUEÑO
-    /*"SELECT inmueble.Codigo, inmueble.Direccion, propietario.Apellido, propietario.Nombre, propietario.Cuit "
+    
+    /////////////////////////////// TRAE A TODOS! LOS INMUEBLES DESOCUPADOS ESTADO TRUE-1 ORDENADOS POR CODIGO ---OK
+    public List<Inmueble> listarInmueblesDescopudadosOrdenCodigo() {
+        
+        List<Inmueble> inmuebles = new ArrayList<>();
+        try{
+            String sql = "SELECT * FROM inmueble WHERE estado =1 ORDER BY codigo";///CON EL ORDER BY SE PUEDEN ORDENAR PARA MOSTRAR EN LA VISTA MEJOR
+            PreparedStatement ps = con.prepareStatement(sql); //pide el try por el close, al pedo
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Inmueble inmueble = new Inmueble();
+                inmueble.setIdInmueble(rs.getInt("idInmueble"));
+                inmueble.setCodigo(rs.getInt("codigo"));
+                inmueble.setDireccion(rs.getString("direccion"));
+                inmueble.setAltura(rs.getInt("altura"));
+                inmueble.setTipo(rs.getString("tipo"));
+                inmueble.setSuperficie(rs.getInt("superficie"));
+                inmueble.setPrecio(rs.getInt("precio"));
+                inmueble.setEstado(rs.getBoolean("estado"));
+                
+                PropietarioData pd = new PropietarioData();
+                int idp = rs.getInt("idpropietario");
+                Propietario p = pd.buscarPropietarioPorID(idp);
+                inmueble.setPropietario(p);
+                inmuebles.add(inmueble);
+            }
+            ps.close();
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inmueble "+ex.getMessage());
+        }
+        return inmuebles;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*
+    /////////////////////////////// TRAE A TODOS! LOS INMUEBLES DESOCUPADOS Y SU DUEÑO ----DEPRECADO
+    public List<Inmueble> listarInmueblesDescopudadosYpropietario() {
+    List<Inmueble> inmuebles = new ArrayList<>();
+        try{
+            String sql ="SELECT inmueble.Codigo, inmueble.Direccion, propietario.Apellido, propietario.Nombre, propietario.Cuit "
                     + "FROM inmueble INNER JOIN propietario ON "
                     + "inmueble.idPropietario = propietario.idPropietario "
                     + "WHERE Estado=1 ORDER BY inmueble.Codigo";
-       */     
-    
+            PreparedStatement ps = con.prepareStatement(sql); //pide el try por el close, al pedo
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Inmueble inmueble = new Inmueble();
+                inmueble.setIdInmueble(rs.getInt("idInmueble"));
+                inmueble.setCodigo(rs.getInt("codigo"));
+                inmueble.setDireccion(rs.getString("direccion"));
+                inmueble.setAltura(rs.getInt("altura"));
+                inmueble.setTipo(rs.getString("tipo"));
+                inmueble.setSuperficie(rs.getInt("superficie"));
+                inmueble.setPrecio(rs.getInt("precio"));
+                inmueble.setEstado(rs.getBoolean("estado"));
+                
+                PropietarioData pd = new PropietarioData();
+                int idp = rs.getInt("idpropietario");
+                Propietario p = pd.buscarPropietarioPorID(idp);
+                inmueble.setPropietario(p);
+                inmuebles.add(inmueble);
+            }
+            ps.close();
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inmueble "+ex.getMessage());
+        }
+        return inmuebles;
+    }
+    */
     
     
     
