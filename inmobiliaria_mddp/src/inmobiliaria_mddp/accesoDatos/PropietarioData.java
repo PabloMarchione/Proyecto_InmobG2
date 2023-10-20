@@ -100,7 +100,43 @@ public class PropietarioData {
             }
             return pro;
     }
+    
+    
+    public Propietario buscarPropietarioPorCuit(int cuit){
 
+        String sql= "SELECT idPropietario, cuit, apellido, nombre, domicilio, telefono, mail FROM propietario WHERE cuit=?";
+
+        Propietario pro=null;
+
+            try {
+                PreparedStatement ps=con.prepareStatement(sql);
+                ps.setInt(1, cuit);
+
+                ResultSet rs=ps.executeQuery();
+
+                if(rs.next()){
+                    pro=new Propietario();
+                    pro.setIdPropietario(rs.getInt("idPropietario"));
+                    pro.setCuit(rs.getInt("cuit"));
+                    pro.setApellido(rs.getString("apellido"));
+                    pro.setNombre(rs.getString("nombre"));
+                    pro.setDomicilio(rs.getString("domicilio"));
+                    pro.setTelefono(rs.getInt("telefono"));
+                    pro.setMail(rs.getString("mail"));
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "No se encontró propietario con cuit:" + cuit);
+                }
+                ps.close();
+
+
+            } catch (SQLException ex) {
+               JOptionPane.showMessageDialog(null, "No se pudo acceder a la tabla propietario");  
+            }
+            return pro;
+    }
+    
     public void modificarPropietario(Propietario propietario){
 
         String sql= "UPDATE propietario SET cuit=?, apellido=?, nombre=?, domicilio=?, telefono=?, mail=? WHERE idPropietario=?";
@@ -160,7 +196,7 @@ public class PropietarioData {
              return propietario;
     
     }
-    public Propietario buscarPropietarioPorCuit(int cuit){
+    public Propietario buscarPropietarioPorCuit2(int cuit){
 
         String sql= "SELECT * FROM propietario WHERE cuit=?";
         Propietario pro=null;
