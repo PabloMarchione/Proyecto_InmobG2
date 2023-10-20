@@ -4,10 +4,7 @@ package inmobiliaria_mddp.entidades;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Diego
- */
+
 public class Inquilino {
     private int id_inquilino;
     private String NomCom;

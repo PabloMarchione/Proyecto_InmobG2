@@ -42,6 +42,8 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        JD_Menu.setPreferredSize(new java.awt.Dimension(750, 540));
+
         javax.swing.GroupLayout JD_MenuLayout = new javax.swing.GroupLayout(JD_Menu);
         JD_Menu.setLayout(JD_MenuLayout);
         JD_MenuLayout.setHorizontalGroup(
@@ -50,7 +52,7 @@ public class Menu extends javax.swing.JFrame {
         );
         JD_MenuLayout.setVerticalGroup(
             JD_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGap(0, 550, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Propietarios");
@@ -70,6 +72,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(JM_Inmuebles);
 
         jMInquilino.setText("Inquilino");
+        jMInquilino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMInquilinoMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMInquilino);
 
         jM_calquiler.setText("C. de Alquiler");
@@ -110,11 +117,11 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JD_Menu)
+            .addComponent(JD_Menu, javax.swing.GroupLayout.DEFAULT_SIZE, 727, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JD_Menu)
+            .addComponent(JD_Menu, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
         );
 
         pack();
@@ -165,6 +172,15 @@ public class Menu extends javax.swing.JFrame {
         JD_Menu.add(ventanaProp);
         JD_Menu.moveToFront(ventanaProp);
     }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMInquilinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMInquilinoMouseClicked
+        JD_Menu.removeAll();
+        JD_Menu.repaint();
+        GestionInquilino ventanaInquilino = new GestionInquilino();
+        ventanaInquilino.setVisible(true);
+        JD_Menu.add(ventanaInquilino);
+        JD_Menu.moveToFront(ventanaInquilino);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMInquilinoMouseClicked
 
     /**
      * @param args the command line arguments
