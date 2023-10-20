@@ -30,3 +30,4 @@ replay_pid*
 >>>>>>> edf77ff264390813e34d2e09cd52d8ff0f357d9b
 inmobiliaria_mddp/nbproject/private/private.properties
 /inmobiliaria_mddp/dist/
+*.properties
