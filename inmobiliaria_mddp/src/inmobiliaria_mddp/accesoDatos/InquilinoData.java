@@ -60,7 +60,7 @@ public class InquilinoData {
             
             if (rs.next())
             {
-           
+           JOptionPane.showMessageDialog(null,"Inquilino Agregado Correctamente"+ rs);
             }
             else
             {
@@ -197,5 +197,41 @@ public class InquilinoData {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inmueble "+ex.getMessage());
         }
         return inquilinos;
+    }
+     public Inquilino buscarInquilinoConCuit(int id)
+    {
+        Inquilino inqui = null;
+        
+        String sql = "SELECT idInquilino, NomCom, CuitIn, TelContacto, LugarDeTra, NomCompletoGa, CuitGarante FROM inquilino WHERE CuitIn = ?";
+        
+        try 
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1,id );
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next())
+            {
+                inqui = new Inquilino();
+                inqui.setId_inquilino(rs.getInt("idInquilino"));
+                inqui.setNomCom(rs.getString("NomCom"));
+                inqui.setCuitIn(rs.getInt("CuitIn"));
+                inqui.setTelContacto(rs.getInt("TelContacto"));
+                inqui.setLugarDeTra(rs.getString("LugarDeTra"));
+                inqui.setNomCompletoGa(rs.getString("NomCompletoGa"));
+                inqui.setCuitGarante(rs.getInt("CuitGarante"));
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "No se encontro el inquilino");
+            }
+            ps.close();
+        } 
+        catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inmueble "+ex.getMessage());
+        }
+        
+        return inqui;
     }
 }
