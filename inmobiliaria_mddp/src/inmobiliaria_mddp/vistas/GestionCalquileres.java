@@ -120,6 +120,7 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
 
         jL_monto.setText("Monto:");
 
+        jTF_monto.setEditable(false);
         jTF_monto.setText(" ");
 
         jB_nuevo.setText("Nuevo");
@@ -489,7 +490,10 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
                     }
                     LocalDate fechaIni = jDCH_fechaIni.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     LocalDate fechaFin = jDCH_fechaFin.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                    int monto = Integer.parseInt(jTF_monto.getText());
+                    //para capturar precio del inmueble, que asumimos se refiere al alquiler
+                    Inmueble inmue = (Inmueble) jCB_inmueble.getSelectedItem();
+                    int monto = inmue.getPrecio();
+                    //int monto = Integer.parseInt(jTF_monto.getText());
                     if(monto <= 0)
                     {
                         JOptionPane.showMessageDialog(this, "Ingrese un valor mayor a 0");
@@ -541,6 +545,7 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
         Inmueble inmu = (Inmueble) jCB_inmueble.getSelectedItem();
         Propietario propi = inmu.getPropietario();
         jTF_propietario.setText(propi.getApellido());
+        jTF_monto.setText("" + inmu.getPrecio());
     }//GEN-LAST:event_jCB_inmuebleActionPerformed
 
     private void jCB_inquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCB_inquilinoActionPerformed
