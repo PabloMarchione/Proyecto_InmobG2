@@ -250,6 +250,7 @@
     <Component class="javax.swing.JButton" name="JB_Buscar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Busqueda por CODIGO"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JB_BuscarActionPerformed"/>

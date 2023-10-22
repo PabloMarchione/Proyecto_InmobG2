@@ -24,6 +24,7 @@ private DefaultTableModel modelito = new DefaultTableModel();
         //iniciales
         armarTabla();
         cargarTabla();
+        JT_TablaDisponibles.setEnabled(false);
     }
 
     /**
