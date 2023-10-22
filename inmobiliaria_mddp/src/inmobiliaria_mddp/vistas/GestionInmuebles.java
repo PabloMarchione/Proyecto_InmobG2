@@ -382,7 +382,7 @@ private Inmueble aGuardar(Inmueble i){
     
     i.setCodigo(Integer.parseInt(JT_Codigo.getText().trim()));
     i.setDireccion(JT_Direccion.getText());
-    i.setAltura(Integer.parseInt(JT_Codigo.getText().trim()));
+    i.setAltura(Integer.parseInt(JT_Altura.getText().trim()));
     i.setPrecio(Integer.parseInt(JT_Precio.getText().trim()));
     i.setSuperficie(Integer.parseInt(JT_Superficie.getText().trim()));
     i.setTipo(JT_Tipo.getText());
