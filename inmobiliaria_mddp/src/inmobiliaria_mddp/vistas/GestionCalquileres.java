@@ -587,6 +587,34 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jB_anularActionPerformed
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jB_anular;
+    private javax.swing.JButton jB_buscar;
+    private javax.swing.JButton jB_guardar;
+    private javax.swing.JButton jB_nuevo;
+    private javax.swing.JButton jB_salir;
+    private javax.swing.JComboBox<Inmueble> jCB_inmueble;
+    private javax.swing.JComboBox<Inquilino> jCB_inquilino;
+    private com.toedter.calendar.JDateChooser jDCH_fechaFin;
+    private com.toedter.calendar.JDateChooser jDCH_fechaIni;
+    private javax.swing.JLabel jL_codigo;
+    private javax.swing.JLabel jL_fechaFin;
+    private javax.swing.JLabel jL_fechaIni;
+    private javax.swing.JLabel jL_garante;
+    private javax.swing.JLabel jL_inmueble;
+    private javax.swing.JLabel jL_inquilino;
+    private javax.swing.JLabel jL_monto;
+    private javax.swing.JLabel jL_propietario;
+    private javax.swing.JLabel jL_tituloCalquis;
+    private javax.swing.JRadioButton jRB_NoVigente;
+    private javax.swing.JRadioButton jRB_Renovado;
+    private javax.swing.JRadioButton jRB_Vigente;
+    private javax.swing.JTextField jTF_codigo_ID;
+    private javax.swing.JTextField jTF_garante;
+    private javax.swing.JTextField jTF_monto;
+    private javax.swing.JTextField jTF_propietario;
+    // End of variables declaration//GEN-END:variables
+    
     private void cargarComboInqui()
     {
         //instanciar un InquilinoData para acceder a sus métodos
@@ -625,31 +653,4 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
         jRB_Renovado.setSelected(false);
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jB_anular;
-    private javax.swing.JButton jB_buscar;
-    private javax.swing.JButton jB_guardar;
-    private javax.swing.JButton jB_nuevo;
-    private javax.swing.JButton jB_salir;
-    private javax.swing.JComboBox<Inmueble> jCB_inmueble;
-    private javax.swing.JComboBox<Inquilino> jCB_inquilino;
-    private com.toedter.calendar.JDateChooser jDCH_fechaFin;
-    private com.toedter.calendar.JDateChooser jDCH_fechaIni;
-    private javax.swing.JLabel jL_codigo;
-    private javax.swing.JLabel jL_fechaFin;
-    private javax.swing.JLabel jL_fechaIni;
-    private javax.swing.JLabel jL_garante;
-    private javax.swing.JLabel jL_inmueble;
-    private javax.swing.JLabel jL_inquilino;
-    private javax.swing.JLabel jL_monto;
-    private javax.swing.JLabel jL_propietario;
-    private javax.swing.JLabel jL_tituloCalquis;
-    private javax.swing.JRadioButton jRB_NoVigente;
-    private javax.swing.JRadioButton jRB_Renovado;
-    private javax.swing.JRadioButton jRB_Vigente;
-    private javax.swing.JTextField jTF_codigo_ID;
-    private javax.swing.JTextField jTF_garante;
-    private javax.swing.JTextField jTF_monto;
-    private javax.swing.JTextField jTF_propietario;
-    // End of variables declaration//GEN-END:variables
 }
