@@ -226,6 +226,7 @@ private DefaultComboBoxModel modelito = new DefaultComboBoxModel();///PARA USAR 
     private void JB_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_NuevoActionPerformed
         limpiarCampos();
         enableCampos();
+        JC_ListaPropietarios.removeAllItems();
         cargarListaPropietarios();
         JB_Guardar.setEnabled(true);
     }//GEN-LAST:event_JB_NuevoActionPerformed
