@@ -430,7 +430,7 @@ private boolean inspectorDeCampos(){
     filtros.add(JT_Tipo.getText());
     int visor = 0;
     for(String f : filtros){
-        if(f.isBlank() || f.isEmpty()){
+        if(estaEnBlanco(f) || f.isEmpty()){
             visor++;
         }
     }
@@ -438,6 +438,14 @@ private boolean inspectorDeCampos(){
        return false; 
     }else{
         return true;
+    }
+}
+
+private boolean estaEnBlanco(String frase){
+    if(frase == null || frase.trim().length() == 0){
+        return true;
+    }else{
+        return false; 
     }
 }
 ///DEPRECADO
