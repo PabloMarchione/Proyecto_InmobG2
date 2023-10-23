@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/accesoDatos/InquilinoData.java</file>
             <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/vistas/Menu.java</file>
-            <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/vistas/GestionCalquiListaTodo.java</file>
-            <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/accesoDatos/CalquilerData.java</file>
+            <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/vistas/GestionInquilino.java</file>
             <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/vistas/GestionCalquileres.java</file>
-            <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/accesoDatos/PropietarioData.java</file>
-            <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/vistas/GestionCalquiListaInmu.java</file>
+            <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/entidades/Inmueble.java</file>
         </group>
         <group>
             <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/accesoDatos/InquilinoData.java</file>
@@ -22,6 +21,7 @@
             <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/vistas/Menu.java</file>
             <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/vistas/GestionInquilino.java</file>
             <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/vistas/GestionCalquileres.java</file>
+            <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/vistas/FormularioPropietarios.java</file>
             <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/entidades/Inmueble.java</file>
         </group>
     </open-files>
