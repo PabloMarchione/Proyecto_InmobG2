@@ -2,6 +2,8 @@
 package inmobiliaria_mddp.vistas;
 import inmobiliaria_mddp.accesoDatos.*;
 import inmobiliaria_mddp.entidades.*;
+import java.awt.HeadlessException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -105,6 +107,7 @@ private DefaultComboBoxModel modelito = new DefaultComboBoxModel();///PARA USAR 
         });
 
         JB_Buscar.setText("Buscar");
+        JB_Buscar.setToolTipText("Busqueda por CODIGO");
         JB_Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JB_BuscarActionPerformed(evt);
@@ -223,6 +226,7 @@ private DefaultComboBoxModel modelito = new DefaultComboBoxModel();///PARA USAR 
     private void JB_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_NuevoActionPerformed
         limpiarCampos();
         enableCampos();
+        JC_ListaPropietarios.removeAllItems();
         cargarListaPropietarios();
         JB_Guardar.setEnabled(true);
     }//GEN-LAST:event_JB_NuevoActionPerformed
@@ -231,17 +235,25 @@ private DefaultComboBoxModel modelito = new DefaultComboBoxModel();///PARA USAR 
         
         InmuebleData id = new InmuebleData();
         Inmueble i = new Inmueble();
-        aGuardar(i);
-        if(JB_Guardar.getText().equalsIgnoreCase("modificar")){
-            int idinm = id.buscarInmuebleConCodigo(Integer.parseInt(JT_Codigo.getText().trim())).getIdInmueble();
-            i.setIdInmueble(idinm);///ID NO SE MODIFICA NUNCA
-            i.setEstado(i.isEstado());///ESTADO SOLO SE MODIFICA DESDE GESTION ALQUILER
-            id.modificarInmueble(i);///TODO LO DEMAS
-        }else{
-            i.setEstado(true);
-            id.guardarInmueble(i);
+        try {
+            if(!inspectorDeCampos()){
+                JOptionPane.showMessageDialog(this, "Uno o mas campos estan vacios o son de tipo incorrecto");
+            }else{
+                aGuardar(i);
+                if(JB_Guardar.getText().equalsIgnoreCase("modificar")){
+                    int idinm = id.buscarInmuebleConCodigo(Integer.parseInt(JT_Codigo.getText().trim())).getIdInmueble();
+                    i.setIdInmueble(idinm);///ID NO SE MODIFICA NUNCA
+                    i.setEstado(i.isEstado());///ESTADO SOLO SE MODIFICA DESDE GESTION ALQUILER
+                    id.modificarInmueble(i);///TODO LO DEMAS
+                }else{
+                    i.setEstado(true);
+                    id.guardarInmueble(i);
+                    limpiarCampos();
+                }
+            } 
+        } catch (NumberFormatException nf) {
+            JOptionPane.showMessageDialog(this, "Uno o mas campos estan vacios o son de tipo incorrecto");
         }
-        limpiarCampos();
     }//GEN-LAST:event_JB_GuardarActionPerformed
 
     private void JB_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_BuscarActionPerformed
@@ -382,7 +394,7 @@ private Inmueble aGuardar(Inmueble i){
     
     i.setCodigo(Integer.parseInt(JT_Codigo.getText().trim()));
     i.setDireccion(JT_Direccion.getText());
-    i.setAltura(Integer.parseInt(JT_Codigo.getText().trim()));
+    i.setAltura(Integer.parseInt(JT_Altura.getText().trim()));
     i.setPrecio(Integer.parseInt(JT_Precio.getText().trim()));
     i.setSuperficie(Integer.parseInt(JT_Superficie.getText().trim()));
     i.setTipo(JT_Tipo.getText());
@@ -402,6 +414,72 @@ private Inmueble aGuardar(Inmueble i){
 
     return i;
 }
+
+private boolean inspectorDeCampos(){
+    ///CREO UNA LISTA CON TODOS LOS DATOS DE LOS CAMPOS
+    ///LUEGO RECORRO LA LISTA EN BUSQUEDA DE NULLS O ESPACIOS EN BLANCO
+    ///COMO LA LISTA SE LLENA CON GET-TEXT SI NO TRAE NADA, LUEGO EL CONVERSOR A INT TAMPOCO TRAE NADA
+    ///ENTONCES CHEQUEA TAMBIEN QUE LOS CAMPOS SEAN DEL TIPO DE DATO ADECUADO
+    ///2X1 NEGOCION
+    ArrayList<String> filtros = new ArrayList<String>();
+    filtros.add(JT_Codigo.getText());
+    filtros.add(JT_Altura.getText());
+    filtros.add(JT_Direccion.getText());
+    filtros.add(JT_Precio.getText());
+    filtros.add(JT_Superficie.getText());
+    filtros.add(JT_Tipo.getText());
+    int visor = 0;
+    for(String f : filtros){
+        if(estaEnBlanco(f) || f.isEmpty()){
+            visor++;
+        }
+    }
+    if(visor!=0){
+       return false; 
+    }else{
+        return true;
+    }
+}
+
+private boolean estaEnBlanco(String frase){
+    if(frase == null || frase.trim().length() == 0){
+        return true;
+    }else{
+        return false; 
+    }
+}
+///DEPRECADO
+//private Inmueble aGuardarFiltrado(Inmueble i){
+//    
+//    try{
+//        if(!inspectorDeCampos()){
+//            JOptionPane.showMessageDialog(this, "Uno o mas campos estan vacios");
+//        }else{
+//            i.setCodigo(Integer.parseInt(JT_Codigo.getText().trim()));
+//            i.setDireccion(JT_Direccion.getText());
+//            i.setAltura(Integer.parseInt(JT_Altura.getText().trim()));
+//            i.setPrecio(Integer.parseInt(JT_Precio.getText().trim()));
+//            i.setSuperficie(Integer.parseInt(JT_Superficie.getText().trim()));
+//            i.setTipo(JT_Tipo.getText());
+//            /// TODOS MENOS:
+//            /// ID SE GENERA SOLO
+//            /// AL CREAR ES SIEMPRE DESOCUPADO - ESTADO = 1
+//            /// PROPIETARIO AL SER COMBOBOX LO LLAMO DE OTRA MANERA
+//
+//            int indiceSeleccion = JC_ListaPropietarios.getSelectedIndex();///INDICE EN LA LISTA
+//            String x = JC_ListaPropietarios.getItemAt(indiceSeleccion);///SELECCION DEL ITEM, X MARKS THE SPOT CAPTAIN!
+//            int pos = x.indexOf("-");///DESDE ACA +1
+//            int cuicui = Integer.parseInt(x.substring(pos+1, x.length()).trim());///CORTO HASTA EL FIN Y TRAIGO EL CUIT
+//
+//            PropietarioData pd = new PropietarioData();
+//            Propietario p = pd.buscarPropietarioPorCuit(cuicui);
+//            i.setPropietario(p);
+//        }
+//    } catch (NumberFormatException ex) {
+//                JOptionPane.showMessageDialog(this, "Ingrese SOLO numeros enteros");
+//            }
+//    return i;
+//}
 
 
 ///DEPRECADO

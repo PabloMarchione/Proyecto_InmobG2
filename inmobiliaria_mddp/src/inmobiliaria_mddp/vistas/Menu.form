@@ -71,7 +71,7 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMI_listaTodos">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Todos"/>
+                    <Property name="text" type="java.lang.String" value="Vigentes"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMI_listaTodosActionPerformed"/>
