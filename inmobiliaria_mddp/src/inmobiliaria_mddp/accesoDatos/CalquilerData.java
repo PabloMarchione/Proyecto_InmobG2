@@ -26,12 +26,12 @@ public class CalquilerData {
     
     private Connection con;
     
-    /*
-    public CalquilerData(){
-        
-        con = ConexP.getConexion();
-    }
-    */
+    
+//    public CalquilerData(){
+//        
+//        con = ConexP.getConexion();
+//    }
+    
     
     private InquilinoData inquiData;
     private InmuebleData inmuData;
