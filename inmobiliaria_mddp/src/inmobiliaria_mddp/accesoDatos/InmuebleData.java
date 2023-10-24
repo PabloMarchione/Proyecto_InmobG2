@@ -17,15 +17,15 @@ public class InmuebleData {
     private Connection con = null;
     
     
-//    public InmuebleData(){
-//        
-//        con = ConexP.getConexion();
-//    }
-    
     public InmuebleData(){
         
-        con = Conexion.getConexion();
+        con = ConexP.getConexion();
     }
+    
+//    public InmuebleData(){
+//        
+//        con = Conexion.getConexion();
+//    }
     
     //Agregado por Martin
     //Ocupado es lo mismo que Estado = 0
@@ -279,7 +279,7 @@ public class InmuebleData {
         }
          ps.close();
         } catch (SQLException e) {
-         JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inmueble");
+         JOptionPane.showMessageDialog(null, " Error, el inmueble aparece en un contrato");
         }
     }
     
