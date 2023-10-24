@@ -148,7 +148,7 @@ public class InquilinoData {
     public void eliminarInquilino(int id_inquilino){
         
         
-        String sql="DELETE FROM `inquilino` WHERE id_inquilino=?";
+        String sql="DELETE FROM inquilino WHERE idInquilino=?";
         
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -157,14 +157,14 @@ public class InquilinoData {
             int filas=ps.executeUpdate();
             if(filas>0){
                 
-                JOptionPane.showMessageDialog(null, "se borro inquilino correctamente"+ filas);
+                JOptionPane.showMessageDialog(null, "se borro inquilino correctamente");
                               
                 
                 
             }
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error al borrar" +ex);
+            JOptionPane.showMessageDialog(null,"Error al borrar" );
         }
         
         
@@ -198,7 +198,7 @@ public class InquilinoData {
         }
         return inquilinos;
     }
-     public Inquilino buscarInquilinoConCuit(int id)
+     public Inquilino buscarInquilinoConCuit(int cuit)
     {
         Inquilino inqui = null;
         
@@ -207,7 +207,7 @@ public class InquilinoData {
         try 
         {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1,id );
+            ps.setInt(1,cuit );
             
             ResultSet rs = ps.executeQuery();
             
