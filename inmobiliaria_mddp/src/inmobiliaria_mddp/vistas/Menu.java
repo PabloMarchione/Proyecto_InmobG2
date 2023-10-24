@@ -91,7 +91,7 @@ public class Menu extends javax.swing.JFrame {
 
         jM_Listar.setText("Listar");
 
-        jMI_listaTodos.setText("Todos");
+        jMI_listaTodos.setText("Vigentes");
         jMI_listaTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMI_listaTodosActionPerformed(evt);

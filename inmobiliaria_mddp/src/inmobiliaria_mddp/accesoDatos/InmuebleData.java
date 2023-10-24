@@ -88,7 +88,7 @@ public class InmuebleData {
             }
             ps.close();
         }catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inmueble "+ex.getLocalizedMessage());
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inmueble, codigo duplicado.");
         }
     }
     

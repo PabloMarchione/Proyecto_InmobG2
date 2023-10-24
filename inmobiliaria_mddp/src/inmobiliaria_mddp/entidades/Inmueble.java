@@ -114,8 +114,23 @@ public class Inmueble {
 
     @Override
     public String toString() {
-        return direccion + " " + altura + ", tipo: " + tipo + ", superficie: " + superficie + ", precio: " + precio;
+        if(estado == false)
+        {
+            return "X" + " " + direccion + " " + altura + ", tipo: " + tipo + ", superficie: " + superficie + ", precio: " + precio;
+        }
+        else
+        {
+            return "✓" + " " + direccion + " " + altura + ", tipo: " + tipo + ", superficie: " + superficie + ", precio: " + precio;
+        }
+        //return direccion + " " + altura + ", tipo: " + tipo + ", superficie: " + superficie + ", precio: " + precio;
     }
+    
+    
+    
+//    @Override ---DEPRECADO
+//    public String toString() {
+//        return direccion + " " + altura + ", tipo: " + tipo + ", superficie: " + superficie + ", precio: " + precio;
+//    }
     
     
     
