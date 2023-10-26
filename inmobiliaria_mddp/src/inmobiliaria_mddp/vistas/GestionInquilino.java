@@ -35,14 +35,12 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
         jB_Nuevo = new javax.swing.JButton();
         jB_Guardar = new javax.swing.JButton();
         jB_Eliminar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jT_idInquilino = new javax.swing.JTextField();
         jT_nombCom = new javax.swing.JTextField();
         jT_cuitInquilino = new javax.swing.JTextField();
         jT_Telefono = new javax.swing.JTextField();
@@ -78,9 +76,6 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
                 jB_EliminarActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("Id Inquilino:");
-        jLabel2.setEnabled(false);
 
         jLabel3.setText("Nombre Completo:");
 
@@ -120,12 +115,6 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jT_idInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -170,18 +159,14 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jB_Nuevo))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jT_idInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(74, 74, 74)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jT_cuitInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -206,7 +191,7 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jT_cuitGarante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jB_Nuevo)
                     .addComponent(jB_Guardar)
@@ -290,7 +275,7 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
             
                
             
-            jT_idInquilino.setText(a.getId_inquilino()+"");
+           // jT_idInquilino.setText(a.getId_inquilino()+"");
             jT_nombCom.setText(a.getNomCom());
             jT_Telefono.setText(a.getTelContacto()+"");
             jT_LTrabajo.setText(a.getLugarDeTra());
@@ -344,7 +329,6 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBsalir;
     private javax.swing.JButton jBuscar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -356,7 +340,6 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jT_Telefono;
     private javax.swing.JTextField jT_cuitGarante;
     private javax.swing.JTextField jT_cuitInquilino;
-    private javax.swing.JTextField jT_idInquilino;
     private javax.swing.JTextField jT_nombCom;
     // End of variables declaration//GEN-END:variables
 
@@ -365,7 +348,7 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
 
 
 private void limpiarCampos (){
-   jT_idInquilino.setText("");
+  // jT_idInquilino.setText("");
    jT_nombCom.setText("");
    jT_cuitInquilino.setText("");
    jT_LTrabajo.setText("");
