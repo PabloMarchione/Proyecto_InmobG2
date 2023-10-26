@@ -17,15 +17,15 @@ public class InmuebleData {
     private Connection con = null;
     
     
-    public InmuebleData(){
-        
-        con = ConexP.getConexion();
-    }
-    
 //    public InmuebleData(){
 //        
-//        con = Conexion.getConexion();
+//        con = ConexP.getConexion();
 //    }
+    
+    public InmuebleData(){
+        
+        con = Conexion.getConexion();
+    }
     
     //Agregado por Martin
     //Ocupado es lo mismo que Estado = 0
