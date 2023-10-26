@@ -321,8 +321,8 @@ private DefaultComboBoxModel modelito = new DefaultComboBoxModel();///PARA USAR 
 
     private void JB_VerDisponiblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_VerDisponiblesActionPerformed
         JDesktopPane desk = this.getDesktopPane();
-        desk.removeAll();
-        desk.repaint();
+//        desk.removeAll();
+//        desk.repaint(); ///TOMAAAAAAAAAAAAAAAAAAAAA
         InmueblesDisponibles idps = new InmueblesDisponibles();
         idps.setVisible(true);
         desk.add(idps);

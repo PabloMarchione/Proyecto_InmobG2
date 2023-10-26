@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/vistas/GestionInmuebles.java</file>
             <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/accesoDatos/InquilinoData.java</file>
             <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/vistas/Menu.java</file>
@@ -38,6 +39,20 @@
             <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/vistas/FormularioPropietarios.java</file>
             <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/accesoDatos/Conexion.java</file>
             <file>file:/D:/Martin/CS/ArgentinaPrograma/Etapa03AppJava/ejercicioIntegrador/grupo2/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/accesoDatos/ConexP.java</file>
+=======
+            <file>file:/C:/Users/W10/Desktop/repogrupo2/ProyectoInmobiliaria/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/accesoDatos/PropietarioData.java</file>
+            <file>file:/C:/Users/W10/Desktop/repogrupo2/ProyectoInmobiliaria/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/vistas/Menu.java</file>
+            <file>file:/C:/Users/W10/Desktop/repogrupo2/ProyectoInmobiliaria/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/vistas/GestionInquilino.java</file>
+            <file>file:/C:/Users/W10/Desktop/repogrupo2/ProyectoInmobiliaria/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/vistas/FormularioPropietarios.java</file>
+        </group>
+        <group/>
+        <group>
+            <file>file:/C:/Users/caja0/OneDrive/Documentos/GitHub/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/accesoDatos/InquilinoData.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/caja0/OneDrive/Documentos/GitHub/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/accesoDatos/ConexP.java</file>
+            <file>file:/C:/Users/caja0/OneDrive/Documentos/GitHub/Proyecto_InmobG2/inmobiliaria_mddp/src/inmobiliaria_mddp/vistas/Menu.java</file>
+>>>>>>> df1f8ffe7f158949f64147e34e835fcebd78f8ad
         </group>
     </open-files>
 </project-private>
