@@ -19,12 +19,14 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author marti
  */
 public class GestionCalquileres extends javax.swing.JInternalFrame {
 
+    private DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form GestionCalquileres
      */
@@ -32,6 +34,12 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
         initComponents();
         cargarComboInqui();
         cargarComboInmu();
+        cargarComboPorInmueble();
+        //jRB_ContratosVigentes.setSelected(true);
+        //jRB_porInmueble.setSelected(false);
+        jCB_PorInmueble.setEnabled(false);
+        armarCabecera();
+        //cargarDatos();        
         limpiarCampos();
     }
 
@@ -69,6 +77,13 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
         jRB_Vigente = new javax.swing.JRadioButton();
         jRB_Renovado = new javax.swing.JRadioButton();
         jRB_NoVigente = new javax.swing.JRadioButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jL_listado = new javax.swing.JLabel();
+        jRB_ContratosVigentes = new javax.swing.JRadioButton();
+        jRB_porInmueble = new javax.swing.JRadioButton();
+        jCB_PorInmueble = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jT_tablaContratos = new javax.swing.JTable();
 
         jL_tituloCalquis.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jL_tituloCalquis.setText("CONTROL DE CONTRATOS");
@@ -172,6 +187,41 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
             }
         });
 
+        jL_listado.setText("Listado de Contratos de Alquiler");
+
+        jRB_ContratosVigentes.setText("Vigentes");
+        jRB_ContratosVigentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRB_ContratosVigentesActionPerformed(evt);
+            }
+        });
+
+        jRB_porInmueble.setText("Por Inmueble");
+        jRB_porInmueble.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRB_porInmuebleActionPerformed(evt);
+            }
+        });
+
+        jCB_PorInmueble.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCB_PorInmuebleActionPerformed(evt);
+            }
+        });
+
+        jT_tablaContratos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jT_tablaContratos);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -182,58 +232,74 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jL_inquilino)
-                                    .addComponent(jL_garante)
-                                    .addComponent(jL_codigo))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jTF_codigo_ID, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                                        .addGap(84, 84, 84)
-                                        .addComponent(jB_buscar))
-                                    .addComponent(jTF_garante, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jCB_inquilino, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jSeparator1)
+                                .addGap(33, 33, 33))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jL_propietario)
                                     .addComponent(jL_inmueble)
                                     .addComponent(jB_nuevo)
-                                    .addComponent(jL_monto))
+                                    .addComponent(jL_monto)
+                                    .addComponent(jL_inquilino)
+                                    .addComponent(jL_garante)
+                                    .addComponent(jL_codigo))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jTF_codigo_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jB_buscar))
                                     .addComponent(jCB_inmueble, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jTF_propietario)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jB_guardar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jB_anular)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jB_salir)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jRB_Vigente)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jDCH_fechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jDCH_fechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jTF_monto)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jRB_Renovado)
-                                        .addGap(33, 33, 33))))))
+                                        .addComponent(jB_salir))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jRB_Vigente)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(jDCH_fechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(jDCH_fechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(jTF_monto)))
+                                                .addGap(97, 97, 97)
+                                                .addComponent(jRB_Renovado))
+                                            .addComponent(jCB_inquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTF_garante, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jL_fechaIni))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jL_fechaFin))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jL_tituloCalquis, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jRB_NoVigente)))
-                .addGap(102, 102, 102))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jL_fechaIni))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jL_fechaFin))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(jL_tituloCalquis, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jRB_NoVigente))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jL_listado)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jRB_ContratosVigentes)
+                                        .addGap(85, 85, 85)
+                                        .addComponent(jRB_porInmueble)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jCB_PorInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1)))
+                        .addGap(0, 120, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,10 +316,10 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
                     .addComponent(jL_inquilino)
                     .addComponent(jCB_inquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jL_garante)
                     .addComponent(jTF_garante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jL_inmueble)
                     .addComponent(jCB_inmueble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -279,7 +345,18 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
                         .addComponent(jRB_Vigente)
                         .addComponent(jRB_Renovado))
                     .addComponent(jRB_NoVigente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jL_listado)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRB_ContratosVigentes)
+                    .addComponent(jRB_porInmueble)
+                    .addComponent(jCB_PorInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jB_nuevo)
                     .addComponent(jB_guardar)
@@ -592,12 +669,39 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jB_anularActionPerformed
 
+    private void jRB_ContratosVigentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_ContratosVigentesActionPerformed
+        jRB_porInmueble.setSelected(false);
+        jCB_PorInmueble.setEnabled(false);
+        modelo.setRowCount(0); //limpio tabla para no acumular entradas
+        cargarDatos();
+    }//GEN-LAST:event_jRB_ContratosVigentesActionPerformed
+
+    private void jRB_porInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_porInmuebleActionPerformed
+        jRB_ContratosVigentes.setSelected(false);
+        jCB_PorInmueble.setEnabled(true);
+        modelo.setRowCount(0); //limpio tabla para no acumular entradas
+    }//GEN-LAST:event_jRB_porInmuebleActionPerformed
+
+    private void jCB_PorInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCB_PorInmuebleActionPerformed
+        modelo.setRowCount(0); //limpio tabla para no acumular entradas
+        Inmueble inmuSelec = (Inmueble) jCB_PorInmueble.getSelectedItem();
+        //instancio para acceder a metodo lista
+        CalquilerData calquiData = new CalquilerData();
+        List<Calquiler> calquis = calquiData.historialPorInmueble(inmuSelec.getIdInmueble());
+        
+        for (Calquiler aux : calquis)
+        {
+            modelo.addRow(new Object []{aux.getIdContrato(), aux.getFechaIni(), aux.getFechaFin(), aux.getPrecioAlquiler(), aux.getInmueble().getDireccion(), aux.getInquilino().getNomCom()});
+        }
+    }//GEN-LAST:event_jCB_PorInmuebleActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jB_anular;
     private javax.swing.JButton jB_buscar;
     private javax.swing.JButton jB_guardar;
     private javax.swing.JButton jB_nuevo;
     private javax.swing.JButton jB_salir;
+    private javax.swing.JComboBox<Inmueble> jCB_PorInmueble;
     private javax.swing.JComboBox<Inmueble> jCB_inmueble;
     private javax.swing.JComboBox<Inquilino> jCB_inquilino;
     private com.toedter.calendar.JDateChooser jDCH_fechaFin;
@@ -608,16 +712,22 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jL_garante;
     private javax.swing.JLabel jL_inmueble;
     private javax.swing.JLabel jL_inquilino;
+    private javax.swing.JLabel jL_listado;
     private javax.swing.JLabel jL_monto;
     private javax.swing.JLabel jL_propietario;
     private javax.swing.JLabel jL_tituloCalquis;
+    private javax.swing.JRadioButton jRB_ContratosVigentes;
     private javax.swing.JRadioButton jRB_NoVigente;
     private javax.swing.JRadioButton jRB_Renovado;
     private javax.swing.JRadioButton jRB_Vigente;
+    private javax.swing.JRadioButton jRB_porInmueble;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTF_codigo_ID;
     private javax.swing.JTextField jTF_garante;
     private javax.swing.JTextField jTF_monto;
     private javax.swing.JTextField jTF_propietario;
+    private javax.swing.JTable jT_tablaContratos;
     // End of variables declaration//GEN-END:variables
     
     private void cargarComboInqui()
@@ -640,6 +750,41 @@ public class GestionCalquileres extends javax.swing.JInternalFrame {
         for (Inmueble aux : inmuList)
         {
             jCB_inmueble.addItem(aux);
+        }
+    }
+    
+    private void cargarComboPorInmueble()
+    {
+        //instanciar un InmuebleData para acceder a sus métodos
+        InmuebleData inmuData = new InmuebleData();
+        List<Inmueble> inmuList = inmuData.listarInmuebles();
+        //con un for each -enhanced for- voy agregando al comboBox
+        for (Inmueble aux : inmuList)
+        {
+            jCB_PorInmueble.addItem(aux);
+        }
+    }
+    
+    private void armarCabecera()
+    {
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Inicio");
+        modelo.addColumn("Fin");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Inmueble");
+        modelo.addColumn("Inquilino");
+        
+        jT_tablaContratos.setModel(modelo);
+    }
+    
+    private void cargarDatos()
+    {
+        CalquilerData calquiData = new CalquilerData();
+        List<Calquiler> calquis = calquiData.listarVigentes();
+        
+        for (Calquiler aux : calquis)
+        {
+            modelo.addRow(new Object[]{aux.getIdContrato(), aux.getFechaIni(), aux.getFechaFin(), aux.getPrecioAlquiler(), aux.getInmueble().getDireccion(), aux.getInquilino().getNomCom()});
         }
     }
     
