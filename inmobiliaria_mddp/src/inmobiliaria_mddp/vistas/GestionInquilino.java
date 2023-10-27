@@ -1,9 +1,15 @@
 
 package inmobiliaria_mddp.vistas;
 
+import inmobiliaria_mddp.accesoDatos.InmuebleData;
 import inmobiliaria_mddp.accesoDatos.InquilinoData;
+import inmobiliaria_mddp.entidades.Inmueble;
 import inmobiliaria_mddp.entidades.Inquilino;
+import inmobiliaria_mddp.vistas.Menu;
 import java.awt.event.KeyEvent;
+import java.util.List;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
@@ -94,6 +100,16 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
                 jT_cuitInquilinoFocusLost(evt);
             }
         });
+        jT_cuitInquilino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jT_cuitInquilinoMouseClicked(evt);
+            }
+        });
+        jT_cuitInquilino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jT_cuitInquilinoActionPerformed(evt);
+            }
+        });
 
         jBuscar.setMnemonic('B');
         jBuscar.setText("Buscar");
@@ -159,7 +175,7 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jB_Nuevo))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,7 +207,7 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jT_cuitGarante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jB_Nuevo)
                     .addComponent(jB_Guardar)
@@ -264,7 +280,7 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jB_GuardarActionPerformed
 
     private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
-
+   
          try{  
                //InquilinoData inquilino =new InquilinoData();
                int cuitIn=Integer.parseInt(jT_cuitInquilino.getText());
@@ -294,9 +310,9 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBuscarActionPerformed
 
     private void jT_cuitInquilinoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jT_cuitInquilinoFocusLost
-     if (jT_cuitInquilino==null  || jT_cuitInquilino.getText().equalsIgnoreCase("")){
-         JOptionPane.showMessageDialog(this, "Ingrese numeros enteros");
-     }
+//     if (jT_cuitInquilino==null  || jT_cuitInquilino.getText().equalsIgnoreCase("")){
+//         JOptionPane.showMessageDialog(this, "Ingrese numeros enteros");
+//     }
     }//GEN-LAST:event_jT_cuitInquilinoFocusLost
 
     private void jB_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_EliminarActionPerformed
@@ -320,6 +336,23 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
           this.dispose();
        }
     }//GEN-LAST:event_jBsalirActionPerformed
+
+    private void jT_cuitInquilinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jT_cuitInquilinoMouseClicked
+    
+          
+      JDesktopPane desk = this.getDesktopPane();
+        //desk.removeAll();
+      //desk.repaint();
+        InquilinoLista gi = new InquilinoLista();
+        gi.setVisible(true);
+        desk.add(gi);
+        desk.moveToFront(gi);
+        
+    }//GEN-LAST:event_jT_cuitInquilinoMouseClicked
+
+    private void jT_cuitInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_cuitInquilinoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jT_cuitInquilinoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -364,6 +397,4 @@ public void keyTyped(KeyEvent e) {
                     e.consume(); // Esto evita que el carácter no numérico sea ingresado en el campo de texto
                 }
             }
-
-
 }
