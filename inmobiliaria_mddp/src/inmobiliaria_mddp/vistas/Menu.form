@@ -35,14 +35,6 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu1MouseClicked"/>
           </Events>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="JM_Inmuebles">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Inmuebles"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JM_InmueblesMouseClicked"/>
-          </Events>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="jMInquilino">
           <Properties>
             <Property name="text" type="java.lang.String" value="Inquilino"/>
@@ -88,6 +80,14 @@
               </SubComponents>
             </Menu>
           </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="JM_Inmuebles">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Inmuebles"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JM_InmueblesMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
