@@ -24,13 +24,13 @@ public class Menu extends javax.swing.JFrame {
         JD_Menu = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        JM_Inmuebles = new javax.swing.JMenu();
         jMInquilino = new javax.swing.JMenu();
         jM_calquiler = new javax.swing.JMenu();
         jMI_AlquiCrearEditar = new javax.swing.JMenuItem();
         jM_Listar = new javax.swing.JMenu();
         jMI_listaTodos = new javax.swing.JMenuItem();
         jMI_listaXInmu = new javax.swing.JMenuItem();
+        JM_Inmuebles = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -62,14 +62,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(jMenu1);
-
-        JM_Inmuebles.setText("Inmuebles");
-        JM_Inmuebles.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JM_InmueblesMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(JM_Inmuebles);
 
         jMInquilino.setText("Inquilino");
         jMInquilino.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,6 +102,14 @@ public class Menu extends javax.swing.JFrame {
         jM_calquiler.add(jM_Listar);
 
         jMenuBar1.add(jM_calquiler);
+
+        JM_Inmuebles.setText("Inmuebles");
+        JM_Inmuebles.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JM_InmueblesMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(JM_Inmuebles);
 
         setJMenuBar(jMenuBar1);
 
