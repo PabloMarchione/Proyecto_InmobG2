@@ -5,6 +5,7 @@
     <Property name="closable" type="boolean" value="true"/>
     <Property name="iconifiable" type="boolean" value="true"/>
     <Property name="maximizable" type="boolean" value="true"/>
+    <Property name="visible" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -45,7 +46,14 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jBModi" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="jBGuardar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                              <Component id="jBSalir" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jTFCuit" max="32767" attributes="0"/>
                                   <Component id="jTFApe" max="32767" attributes="0"/>
@@ -54,20 +62,16 @@
                                   <Component id="jTFTele" max="32767" attributes="0"/>
                                   <Component id="jTFMail" pref="294" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                              <Component id="jBBuscar" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jBModi" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jBGuardar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-                              <Component id="jBSalir" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jBBuscar" min="-2" pref="146" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" min="-2" pref="251" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="61" max="32767" attributes="0"/>
+              <EmptySpace pref="372" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -76,45 +80,54 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLTitProp" min="-2" pref="22" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jBBuscar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLCuit" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="jTFCuit" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jBBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLApellido" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="jTFApe" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLNombre" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                  <Component id="jTFNom" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLDomicilio" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                  <Component id="jTFDomi" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLTelefono" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="jTFTele" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLMail" min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="jTFMail" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLApellido" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jTFApe" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLNombre" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="jTFNom" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLDomicilio" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="jTFDomi" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLTelefono" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="jTFTele" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLMail" min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="jTFMail" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="129" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jBNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBModi" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jBGuardar" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jBSalir" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="222" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="60" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jBNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jBModi" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="jBGuardar" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="jBSalir" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -249,5 +262,26 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBSalirActionPerformed"/>
       </Events>
     </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="jTLista">
+          <Properties>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+              <Table columnCount="4" rowCount="4">
+                <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                <Column editable="true" title="Title 4" type="java.lang.Object"/>
+              </Table>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>
