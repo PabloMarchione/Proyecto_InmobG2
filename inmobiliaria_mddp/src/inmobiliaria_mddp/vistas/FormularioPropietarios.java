@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  * @author W10
  */
 public class FormularioPropietarios extends javax.swing.JInternalFrame {
-   private DefaultTableModel modelo = new DefaultTableModel();
+private DefaultTableModel modelo = new DefaultTableModel();
    
    
     /**
@@ -404,8 +404,14 @@ public class FormularioPropietarios extends javax.swing.JInternalFrame {
       List<Propietario> proList = proData.ListarPropietarios();
       for(Propietario pro : proList){
           modelo.addRow(new Object []{pro.getCuit(), pro.getApellido(), pro.getNombre()});
-      }
-          
+      }    
   }
+  
+  
+  
+  
+  
+  
+  ////DE ACA PARA ABAJO TERMINA
 }
 
