@@ -208,7 +208,7 @@ public class InmuebleData {
         
         List<Inmueble> inmuebles = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM inmueble";///CON EL ORDER BY SE PUEDEN ORDENAR PARA MOSTRAR EN LA VISTA MEJOR
+            String sql = "SELECT * FROM inmueble ORDER BY codigo";///CON EL ORDER BY SE PUEDEN ORDENAR PARA MOSTRAR EN LA VISTA MEJOR
             PreparedStatement ps = con.prepareStatement(sql); //pide el try por el close, al pedo
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -240,7 +240,7 @@ public class InmuebleData {
     public void modificarInmueble (Inmueble inmueble){
         
         String sql ="UPDATE inmueble SET "
-                + "codigo=?, direccion=?, altura=?, tipo=?, superficie=?, precio=?, estado=?, idPropietario=? "
+                + "codigo=?, direccion=?, altura=?, tipo=?, superficie=?, precio=?, idPropietario=? "
                 + "WHERE  idInmueble=?";
         
         try {
@@ -251,9 +251,9 @@ public class InmuebleData {
             ps.setString(4,inmueble.getTipo());
             ps.setInt(5,inmueble.getSuperficie());
             ps.setInt(6,inmueble.getPrecio());
-            ps.setBoolean(7,inmueble.isEstado());
-            ps.setInt(8,inmueble.getPropietario().getIdPropietario());
-            ps.setInt(9,inmueble.getIdInmueble());
+            //ps.setBoolean(7,inmueble.isEstado());
+            ps.setInt(7,inmueble.getPropietario().getIdPropietario());
+            ps.setInt(8,inmueble.getIdInmueble());
             
             int exito = ps.executeUpdate();
             
@@ -279,7 +279,7 @@ public class InmuebleData {
         }
          ps.close();
         } catch (SQLException e) {
-         JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inmueble");
+         JOptionPane.showMessageDialog(null, " Error, el inmueble aparece en un contrato");
         }
     }
     

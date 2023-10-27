@@ -25,12 +25,12 @@ public class InquilinoData {
     
     private Connection con;
     
-    /*
-    public InquilinoData(){
-        
-        con = ConexP.getConexion();
-    }
-    */
+    
+//    public InquilinoData(){
+//        
+//        con = ConexP.getConexion();
+//    }
+    
     
     
     public InquilinoData()
@@ -60,7 +60,7 @@ public class InquilinoData {
             
             if (rs.next())
             {
-           JOptionPane.showMessageDialog(null,"Inquilino Agregado Correctamente"+ rs);
+           JOptionPane.showMessageDialog(null,"Inquilino Agregado Correctamente");
             }
             else
             {
@@ -69,7 +69,7 @@ public class InquilinoData {
             ps.close();
         } 
         catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inmueble "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inquilino ");
         }
         
      
@@ -138,7 +138,7 @@ public class InquilinoData {
             ps.close();
         } 
         catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inmueble "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inquilino ");
         }
         
         return inqui;
@@ -194,7 +194,7 @@ public class InquilinoData {
             }
             ps.close();
         }catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inmueble "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inquilino ");
         }
         return inquilinos;
     }
@@ -224,12 +224,12 @@ public class InquilinoData {
             }
             else
             {
-                JOptionPane.showMessageDialog(null, "No se encontro el inquilino");
+                JOptionPane.showMessageDialog(null, "No se encontro el Inquilino");
             }
             ps.close();
         } 
         catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inmueble "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inquilino ");
         }
         
         return inqui;
