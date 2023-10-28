@@ -224,7 +224,7 @@ public class InquilinoData {
             }
             else
             {
-                JOptionPane.showMessageDialog(null, "No se encontro el Inquilino");
+               // JOptionPane.showMessageDialog(null, "No se encontro el Inquilino");
             }
             ps.close();
         } 
