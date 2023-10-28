@@ -55,6 +55,7 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
         jT_cuitGarante = new javax.swing.JTextField();
         jBuscar = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
+        jT_idInquilino = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setText("CONTROL DE INQUILINO");
@@ -132,6 +133,7 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
@@ -174,7 +176,10 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
                         .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jB_Nuevo))))
+                            .addComponent(jB_Nuevo)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(jT_idInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -182,7 +187,9 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
+                .addGap(18, 18, 18)
+                .addComponent(jT_idInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jT_cuitInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,7 +238,7 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
         
  try{
       
-       // int idInquilino=Integer.parseInt(jT_idInquilino.getText());
+       int idInquilino=Integer.parseInt(jT_idInquilino.getText());
         int cuitIn=Integer.parseInt(jT_cuitInquilino.getText());
         String NomCom=(jT_nombCom.getText());
         int telContacto= Integer.parseInt(jT_Telefono.getText());
@@ -253,12 +260,12 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
          limpiarCampos();
        // JOptionPane.showMessageDialog(null,"se guardo correctamente");
          }else {
-                     
+              //a.setId_inquilino(idInquilino);
                   a.setCuitIn(cuitIn);
                   a.setNomCom(NomCom);
                   a.setTelContacto(telContacto);
                   a.setLugarDeTra(LugarDeTra);
-                  a.setNomCom(NomCom);
+                  a.setNomCompletoGa(NomCompletoGa);
                   a.setCuitGarante(CuitGarante);
                  
                   
@@ -283,15 +290,15 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
    
          try{  
                //InquilinoData inquilino =new InquilinoData();
-               int cuitIn=Integer.parseInt(jT_cuitInquilino.getText());
-                a = inquilino.buscarInquilinoConCuit(cuitIn);
+               int id=Integer.parseInt(jT_idInquilino.getText());
+                a = inquilino.buscarInquilinoConID(id);
            
             if(a!=null){
            
             
                
             
-           // jT_idInquilino.setText(a.getId_inquilino()+"");
+            jT_cuitInquilino.setText(a.getCuitIn()+"");
             jT_nombCom.setText(a.getNomCom());
             jT_Telefono.setText(a.getTelContacto()+"");
             jT_LTrabajo.setText(a.getLugarDeTra());
@@ -373,6 +380,7 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jT_Telefono;
     private javax.swing.JTextField jT_cuitGarante;
     private javax.swing.JTextField jT_cuitInquilino;
+    private javax.swing.JTextField jT_idInquilino;
     private javax.swing.JTextField jT_nombCom;
     // End of variables declaration//GEN-END:variables
 
