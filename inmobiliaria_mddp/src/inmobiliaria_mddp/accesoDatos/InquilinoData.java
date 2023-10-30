@@ -148,36 +148,44 @@ public class InquilinoData {
     public void eliminarInquilino(int id_inquilino){
         
         
+//              Inquilino b=new Inquilino();
+//           buscarInquiActivo(id_inquilino);
+//           if (b!=null){
+//               JOptionPane.showMessageDialog(null,"holslaldlsdasd");
+//        
         String sql="DELETE FROM inquilino WHERE idInquilino=?";
         
         try {
+                       
             PreparedStatement ps=con.prepareStatement(sql);
             
             ps.setInt(1, id_inquilino);
             int filas=ps.executeUpdate();
+            
+            
+            
             if(filas>0){
                 
                 JOptionPane.showMessageDialog(null, "se borro inquilino correctamente");
-                              
-                
+                             
                 
             }
-            
+                        
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error al borrar" );
+            JOptionPane.showMessageDialog(null,"no se puede borrar inquilino se encuenta asociado a una contrato" );
         }
         
+           }
         
         
-        
-    }
+    
     
     /////////////////////////////// TRAE A TODOS LOS INQUILINOS
     public List<Inquilino> listarInquilinos() {
         
         List<Inquilino> inquilinos = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM inquilino";///CON EL ORDER BY SE PUEDEN ORDENAR PARA MOSTRAR EN LA VISTA MEJOR
+            String sql = "SELECT * FROM inquilino ORDER BY NomCom ASC";///CON EL ORDER BY SE PUEDEN ORDENAR PARA MOSTRAR EN LA VISTA MEJORSELECT * FROM propietario ORDER BY apellido ASC
             PreparedStatement ps = con.prepareStatement(sql); 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -234,4 +242,34 @@ public class InquilinoData {
         
         return inqui;
     }
+     
+     
+     public Inquilino buscarInquiActivo (int id){
+         
+         String sql="SELECT idInquilino FROM `calquiler` WHERE estado=?";
+         Inquilino inq=null;
+         try
+         {
+             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1,id);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                inq=new Inquilino();
+                System.out.println("ese enconto true");
+            }
+            
+                
+         }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inquilino ");
+        }
+         return inq;
+     }
 }
+
+        
+            
+         
+      
+     
+

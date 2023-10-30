@@ -23,7 +23,7 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
    
    public boolean isCellEditable(int f, int c){
        
-       return false;
+       return true;
        
    }
      
@@ -71,9 +71,10 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
         jTbuscar = new javax.swing.JTextField();
         jT_idInquilino = new javax.swing.JTextField();
 
-        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
 
+        jB_Guardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jB_Guardar.setMnemonic('g');
         jB_Guardar.setText("Guardar");
         jB_Guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +83,13 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
             }
         });
 
+        jT_LTrabajo.setBackground(new java.awt.Color(255, 255, 255));
+        jT_LTrabajo.setForeground(new java.awt.Color(0, 0, 0));
+        jT_LTrabajo.setCaretColor(new java.awt.Color(0, 0, 0));
+        jT_LTrabajo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jT_LTrabajo.setSelectionColor(new java.awt.Color(0, 0, 0));
+
+        jB_Eliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jB_Eliminar.setMnemonic('e');
         jB_Eliminar.setText("Eliminar");
         jB_Eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -90,15 +98,27 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
             }
         });
 
+        jT_NombGarante.setBackground(new java.awt.Color(255, 255, 255));
+        jT_NombGarante.setForeground(new java.awt.Color(0, 0, 0));
+        jT_NombGarante.setCaretColor(new java.awt.Color(0, 0, 0));
+        jT_NombGarante.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jT_NombGarante.setSelectionColor(new java.awt.Color(0, 0, 0));
+
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nombre Completo:");
+
+        jT_cuitGarante.setBackground(new java.awt.Color(255, 255, 255));
+        jT_cuitGarante.setForeground(new java.awt.Color(0, 0, 0));
+        jT_cuitGarante.setCaretColor(new java.awt.Color(0, 0, 0));
+        jT_cuitGarante.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jT_cuitGarante.setSelectionColor(new java.awt.Color(0, 0, 0));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("CUIT:");
 
-        jBuscar.setForeground(new java.awt.Color(255, 0, 0));
+        jBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBuscar.setMnemonic('B');
         jBuscar.setText("Buscar");
         jBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +132,7 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Telefono:");
 
+        jBsalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBsalir.setMnemonic('s');
         jBsalir.setText("Salir");
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -129,12 +150,25 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Nombre Garante:");
 
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("CUIT Garante:");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel1.setText("CONTROL DE INQUILINO");
+        jT_nombCom.setBackground(new java.awt.Color(255, 255, 255));
+        jT_nombCom.setForeground(new java.awt.Color(0, 0, 0));
+        jT_nombCom.setCaretColor(new java.awt.Color(0, 0, 0));
+        jT_nombCom.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jT_nombCom.setSelectionColor(new java.awt.Color(0, 0, 0));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 153));
+        jLabel1.setText("CONTROL  DE INQUILINO");
+
+        jT_cuitInquilino.setBackground(new java.awt.Color(255, 255, 255));
+        jT_cuitInquilino.setForeground(new java.awt.Color(0, 0, 0));
+        jT_cuitInquilino.setCaretColor(new java.awt.Color(0, 0, 0));
+        jT_cuitInquilino.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jT_cuitInquilino.setSelectionColor(new java.awt.Color(0, 0, 0));
         jT_cuitInquilino.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jT_cuitInquilinoFocusLost(evt);
@@ -151,6 +185,7 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
             }
         });
 
+        jB_Nuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jB_Nuevo.setMnemonic('n');
         jB_Nuevo.setText("Nuevo");
         jB_Nuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +193,12 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
                 jB_NuevoActionPerformed(evt);
             }
         });
+
+        jT_Telefono.setBackground(new java.awt.Color(255, 255, 255));
+        jT_Telefono.setForeground(new java.awt.Color(0, 0, 0));
+        jT_Telefono.setCaretColor(new java.awt.Color(0, 0, 0));
+        jT_Telefono.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jT_Telefono.setSelectionColor(new java.awt.Color(0, 0, 0));
 
         jTListaInquilino.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -177,9 +218,15 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTListaInquilino);
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Buscar Por CUIT o Nombre:");
 
+        jTbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTbuscarActionPerformed(evt);
+            }
+        });
         jTbuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTbuscarKeyReleased(evt);
@@ -190,108 +237,108 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(114, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(106, 106, 106)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(121, 121, 121)
-                                        .addComponent(jB_Guardar)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(jB_Eliminar)
-                                        .addGap(24, 24, 24)
-                                        .addComponent(jBsalir)
-                                        .addGap(106, 106, 106))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(25, 25, 25)
-                                        .addComponent(jB_Nuevo))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel7)
-                                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(25, 25, 25)
-                                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(28, 28, 28)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jT_cuitInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jT_nombCom)
-                                                    .addComponent(jT_Telefono)
-                                                    .addComponent(jT_LTrabajo)
-                                                    .addComponent(jT_NombGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jT_cuitGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(27, 27, 27)
-                                                .addComponent(jBuscar)))))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTbuscar))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
-                                .addGap(375, 375, 375)))
-                        .addContainerGap())
+                        .addComponent(jB_Guardar)
+                        .addGap(28, 28, 28)
+                        .addComponent(jB_Eliminar)
+                        .addGap(24, 24, 24)
+                        .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(103, 103, 103))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(166, 166, 166))))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(387, 387, 387))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(25, 25, 25)
+                                    .addComponent(jB_Nuevo))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jTbuscar))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(jT_idInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(jT_idInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(118, 118, 118)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jT_nombCom)
+                            .addComponent(jT_LTrabajo)
+                            .addComponent(jT_NombGarante, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jT_cuitInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jT_cuitGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jT_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBuscar)))))
+                .addGap(106, 106, 106))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(118, 118, 118)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(jBuscar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
+                        .addGap(82, 82, 82)
                         .addComponent(jT_idInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
+                        .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jT_cuitInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jT_nombCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jT_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jT_LTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jT_NombGarante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jT_cuitGarante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(40, 40, 40)
+                            .addComponent(jT_cuitInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBuscar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jT_nombCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jT_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jT_LTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jT_NombGarante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jT_cuitGarante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jB_Nuevo)
                     .addComponent(jB_Guardar)
@@ -336,9 +383,9 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jT_cuitInquilinoMouseClicked
 
     private void jT_cuitInquilinoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jT_cuitInquilinoFocusLost
-        //     if (jT_cuitInquilino==null  || jT_cuitInquilino.getText().equalsIgnoreCase("")){
-            //         JOptionPane.showMessageDialog(this, "Ingrese numeros enteros");
-            //     }
+//           if (jT_cuitInquilino==null  || jT_cuitInquilino.getText().equalsIgnoreCase("")){
+//                  JOptionPane.showMessageDialog(this, "Ingrese numeros enteros");
+//               }
     }//GEN-LAST:event_jT_cuitInquilinoFocusLost
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
@@ -375,6 +422,15 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
     private void jB_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_EliminarActionPerformed
           
       try{  
+                
+//       Inquilino b=new Inquilino();
+//        int idInqui=Integer.parseInt(jT_idInquilino.getText());
+//            b=inquilino.buscarInquiActivo(idInqui);
+//           if (b!=null){
+//               JOptionPane.showMessageDialog(null,"no se puede borrar");
+//               
+//           }   
+            
         int cuitIn=Integer.parseInt(jT_cuitInquilino.getText());
             a = inquilino.buscarInquilinoConCuit(cuitIn);
         if(a!=null){
@@ -437,20 +493,39 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
             }
         }catch(NumberFormatException nfe){
 
-            JOptionPane.showMessageDialog(null, "error de algo");
+            JOptionPane.showMessageDialog(null, "ingreser dato valido");
 
         }
     }//GEN-LAST:event_jB_GuardarActionPerformed
 
     private void jTListaInquilinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTListaInquilinoMouseClicked
-       int Fila=jTListaInquilino.getSelectedRow();
-        if(Fila!=-1){
-            int cuit= (Integer)jTListaInquilino.getValueAt(Fila, 0);
-            String NomCom=(String)jTListaInquilino.getValueAt(Fila,1);
-            int TelContacto=(Integer)jTListaInquilino.getValueAt(Fila,2);
-            jT_cuitInquilino.setText(cuit+"");
-            jT_nombCom.setText(NomCom);
-            
+  
+    
+     
+        int Fila = jTListaInquilino.getSelectedRow();
+    if (Fila != -1) {
+        String cuitStr = jTListaInquilino.getValueAt(Fila, 0).toString();
+        int cuit;
+        try {
+            cuit = Integer.parseInt(cuitStr);
+        } catch (NumberFormatException e) {
+            // Manejar el caso en el que no se pueda convertir la cadena en un entero
+            cuit = 0; // O un valor predeterminado adecuado
+        }
+        
+        String NomCom = (String) jTListaInquilino.getValueAt(Fila, 1);
+        
+        String TelContactoStr = jTListaInquilino.getValueAt(Fila, 2).toString();
+        int TelContacto;
+        try {
+            TelContacto = Integer.parseInt(TelContactoStr);
+        } catch (NumberFormatException e) {
+            // Manejar el caso en el que no se pueda convertir la cadena en un entero
+            TelContacto = 0; // O un valor predeterminado adecuado
+        }
+
+        jT_cuitInquilino.setText(String.valueOf(cuit));
+        jT_nombCom.setText(NomCom);
             
             
     }//GEN-LAST:event_jTListaInquilinoMouseClicked
@@ -458,10 +533,12 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
     private void jTbuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTbuscarKeyReleased
       borrarfilas();
         InquilinoData a = new InquilinoData();
-           
         
+       
+       
         for (Inquilino inqui:a.listarInquilinos()){
-            if (Integer.toString(inqui.getCuitIn()).startsWith(jTbuscar.getText()) || inqui.getNomCom().startsWith(jTbuscar.getText())){
+            if (Integer.toString(inqui.getCuitIn()).startsWith(jTbuscar.getText()) ||inqui.getNomCom().toLowerCase().startsWith(jTbuscar.getText())
+                    || Integer.toString(inqui.getTelContacto()).startsWith(jTbuscar.getText()) ){
                 
              modelo3.addRow(new Object []{
                  inqui.getCuitIn(), 
@@ -473,6 +550,10 @@ public class GestionInquilino extends javax.swing.JInternalFrame {
         
         }  // TODO add your handling code here:
     }//GEN-LAST:event_jTbuscarKeyReleased
+
+    private void jTbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTbuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTbuscarActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
